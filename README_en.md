@@ -3,8 +3,19 @@
 # C-Eval： A Multi-Level Multi-Discipline Chinese Evaluation Suite
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">Download</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">Email</a> • 📃 <a href="https://google.com"" target="_blank">Paper</a> <br>
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">Download</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">Email</a> • 📃 <a href="https://google.com"" target="_blank">Paper</a> <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_en.md">English 
 </p>
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Leaderboard](#leaderboard)
+- [C-Eval Hard Leaderboard](#c-eval-hard-leaderboard)
+- [Download](#download)
+- [Subjects](#subjects)
+- [Data Format](#data-format)
+- [Usage](#usage)
+- [License](#license)
 
 
 
@@ -36,8 +47,7 @@ C-Eval is a comprehensive language model Chinese evaluation component, aimed at 
 
 ### C-Eval Hard Leaderboard
 
-We select 8 challenging math, physics, and chemistry subjects from \ck~to form a separate benchmark, C-Eval Hard, which includes advanced mathematics, discrete mathematics, probability and statistics, college chemistry, college physics, high school mathematics, high school chemistry, and high school physics. 
-These subjects often involve with complex \LaTeX~equations and require non-trivial reasoning ability to solve.
+We select 8 challenging math, physics, and chemistry subjects from C-Eval to form a separate benchmark, C-Eval Hard, which includes advanced mathematics, discrete mathematics, probability and statistics, college chemistry, college physics, high school mathematics, high school chemistry, and high school physics. These subjects often involve with complex LaTeX equations and require non-trivial reasoning ability to solve.
 
 | Model               | Accuracy |
 | ------------------- | :------: |
@@ -81,3 +91,74 @@ The Question in C-Eval span 52 diverse disciplines in the table shown below.
 
 ### Data Format
 
+* We have divided each subject into three sets: dev, val, and test.  The dev set per subject consists of five exemplars to facilitate few-shot evaluation.  The val set is intended to be used for hyperparameter tuning. And the test set is for model evaluation.
+
+* The data is stored in the csv format and using the utf-8 encoding format.
+
+* Take computer network as an example:
+
+  ```python
+  id: 1
+  question: 滑动窗口的作用是____。
+  A: 流量控制
+  B: 拥塞控制
+  C: 路由控制
+  D: 差错控制
+  answer: A
+  explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
+  ```
+
+* **Note: The explanation is not included in the val set, and the answer and explanation have been removed from the test set to prevent data leak.**
+
+
+
+### Usage
+
+* To facilitate usage, we have organized the file names and English/Chinese names corresponding to 52 subjects. Please refer to [subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json) for details. The format is as follows:
+
+  ```
+  {
+      "computer_network": [
+          "Computer Network",
+          "计算机网络",
+          "STEM"
+      ],
+      ...
+      "filename":[
+          "English Name",
+          "Chinese Name"
+          "Supercatagory Label(STEM, Social Science, Humanities or Other)"
+      ]
+  }
+  ```
+
+* Load from [Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam). We have divided dataset into three sets: dev, validation, and test.
+
+  ```python
+  from datasets import load_dataset
+  dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
+  ```
+
+* After downloading and unzipping the compressed file, use libraries such as Pandas to read it. For example:
+
+  ```python
+  import os
+  import pandas as pd
+  
+  File_Dir="data"
+  test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
+  ```
+
+  
+
+
+
+### Licenses
+
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+
+This work is licensed under a [MIT License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+[![License: CC BY-SA 4.0](https://camo.githubusercontent.com/bdc6a3b8963aa99ff57dfd6e1e4b937bd2e752bcb1f1936f90368e5c3a38f670/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d434325323042592d2d5341253230342e302d6c69676874677265792e737667)](https://creativecommons.org/licenses/by-sa/4.0/)
+
+The C-Eval dataset is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).

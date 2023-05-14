@@ -1,7 +1,7 @@
 # C-Eval： A Multi-Level Multi-Discipline Chinese Evaluation Suite
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">下载</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">邮箱</a> • 📃 <a href="https://google.com"" target="_blank">论文</a> <br>
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">下载</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">邮箱</a> • 📃 <a href="https://google.com"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_en.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">中文</a>
 </p>
 
 
@@ -95,13 +95,13 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
   explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
   ```
 
-* **注意：val集不包含explanation，test集不包含answer和explanation**。
+* **注意：val集不包含explanation。并且，为了防止数据泄露，test集不包含answer和explanation**。
 
 
 
 ### 使用
 
-* 为了方便使用，我们整理了52个科目对应的文件名和中英文名称，参考subject_mapping.json。格式如下：
+* 为了方便使用，我们整理了52个科目对应的文件名和中英文名称，参考[subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json)。格式如下：
 
   ```
   {
@@ -112,7 +112,7 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
   	],
   	...
   	"filename":[
-  	"English Name",
+  	"英文名称",
   	"中文名称"
   	"类别(STEM,Social Science,Humanities,Other四选一)"
   	]
@@ -122,36 +122,24 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 * 从[Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam)使用，分为"dev"，"validation"和"test"三个集合
 
   ```python
-  import json
   from datasets import load_dataset
-  
-  with open(r"subject_mapping.json",encoding="utf-8") as f:
-      subject_mapping=json.load(f)
-      
-  for k in subject_mapping.keys():
-      dataset=load_dataset(r"ceval/ceval-exam",name=k)
-      print(dataset['dev'][1])
-      print(dataset['validation'][1])
-      print(dataset['test'][1])    
+  dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
   ```
-
-* [下载](google.com)压缩文件解压后，使用Pandas等库读取。例如：
+  
+* [下载](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw)压缩文件解压后，使用Pandas等库读取。例如：
 
   ```python
   import os
   import pandas as pd
   
   File_Dir="data"
-  
-  with open(r"subject_mapping.json",encoding="utf-8") as f:
-      subject_mapping=json.load(f)
-  
-  for k in subject_mapping.keys():
-      for s in ["dev","val","test"]:
-          pd.read_csv(os.path.join(File_Dir,s,f"{k}_{s}.csv"))
+  test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
-
   
+
+
+
+
 
 ### Licenses
 
