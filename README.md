@@ -29,7 +29,7 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 
 数据集主要包含52个科目，如下图所示。
 
-<img src="https://cevalbenchmark.com/static/img/overview.png">
+<img src="https://cevalbenchmark.com/static/img/overview.png" style="zoom: 80%;" >
 
 ### 数据格式
 
@@ -74,13 +74,15 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
   }
   ```
 
-* 从[Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam)使用，分为dev，validation和test三个集合
+* 从[Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam)使用，分为"dev"，"validation"和"test"三个集合
 
-  ```
+  ```python
   import json
   from datasets import load_dataset
+  
   with open(r"subject_mapping.json",encoding="utf-8") as f:
       subject_mapping=json.load(f)
+      
   for k in subject_mapping.keys():
       dataset=load_dataset(r"ceval/ceval-exam",name=k)
       print(dataset['dev'][1])
@@ -88,7 +90,23 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
       print(dataset['test'][1])    
   ```
 
-* 下载源数据使用，从xxxxx下载后直接使用
+* [下载](google.com)压缩文件解压后，使用Pandas等库读取。例如：
+
+  ```python
+  import os
+  import pandas as pd
+  
+  File_Dir="data"
+  
+  with open(r"subject_mapping.json",encoding="utf-8") as f:
+      subject_mapping=json.load(f)
+  
+  for k in subject_mapping.keys():
+      for s in ["dev","val","test"]:
+          pd.read_csv(os.path.join(File_Dir,s,f"{k}_{s}.csv"))
+  ```
+
+  
 
 
 
