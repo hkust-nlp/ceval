@@ -3,10 +3,12 @@
 # C-Eval： A Multi-Level Multi-Discipline Chinese Evaluation Suite
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">Download</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">Email</a> • 📃 <a href="https://google.com"" target="_blank">Paper</a> <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_en.md">English 
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">Download</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">Email</a> • 📃 <a href="https://google.com"" target="_blank">Paper</a>  <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">   中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_en.md">English 
 </p>
 
-## Table of Contents
+
+
+### Table of Contents
 
 - [Introduction](#introduction)
 - [Leaderboard](#leaderboard)
@@ -15,7 +17,7 @@
 - [Subjects](#subjects)
 - [Data Format](#data-format)
 - [Usage](#usage)
-- [License](#license)
+- [Licenses](#licenses)
 
 
 
@@ -150,8 +152,6 @@ The Question in C-Eval span 52 diverse disciplines in the table shown below.
   ```
 
   
-
-
 
 ### Licenses
 

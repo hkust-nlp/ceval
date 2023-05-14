@@ -4,6 +4,17 @@
    🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">下载</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">邮箱</a> • 📃 <a href="https://google.com"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_en.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">中文</a>
 </p>
 
+### 目录
+
+* [介绍](#介绍)
+* [排行榜](#排行榜)
+* [C-Eval Hard 排行榜](c-eval-hard-排行榜)
+* [下载方法](#下载方法)
+* [科目](#科目)
+* [数据格式](#数据格式)
+* [使用](#使用)
+* [Licenses](#licenses)
+
 
 
 ### 介绍
@@ -34,7 +45,7 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 
 
 
-### C-Eval Hard排行榜
+### C-Eval Hard 排行榜
 
 我们选取了C-Eval中具有挑战性的数学、物理和化学科目组成C-Eval Hard，包括：高等数学、离散数学、概率统计、大学化学、大学物理、高中数学、高中物理、高中化学八个科目。这些科目包含了复杂的LaTex公式，需要非凡的推理能力才能解决。
 
@@ -136,8 +147,6 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
   test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
   
-
-
 
 
 
