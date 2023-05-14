@@ -1,7 +1,7 @@
 # C-Eval： A Multi-Level Multi-Discipline Chinese Evaluation Suite
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://models.aminer.cn/glm/zh-CN/download/GLM-130B" target="_blank">下载</a> •  ✉️ <a href="ceval.benchmark@gmail.com">邮箱</a> • 📃 <a href="https://google.com"" target="_blank">论文</a> <br>
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://models.aminer.cn/glm/zh-CN/download/GLM-130B" target="_blank">下载</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">邮箱</a> • 📃 <a href="https://google.com"" target="_blank">论文</a> <br>
 </p>
 
 
