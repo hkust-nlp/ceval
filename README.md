@@ -8,9 +8,46 @@
 
 ### 介绍
 
-C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言模型在中文语境中的知识和推理能力。C-Eval 包括四个难度级别的多项选择题：初中、高中、大学和专业测试。这些问题涵盖 52 个不同的学科，包括STEM，人文科学，社会科学和其他四个大类。进一步探索C-Eval，请访问我们的[网站](https://cevalbenchmark.com/)。我们在网站上面给出了52个科目以及对应的[样例](https://cevalbenchmark.com/static/explore.html)。并且，您可以通过我们的网站上传测试结果，获得对应的数据，在[Leaderboard](https://cevalbenchmark.com/static/leaderboard.html)展示成绩。
+C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言模型在中文语境中的知识和推理能力。C-Eval 包括四个难度级别的多项选择题：初中、高中、大学和专业测试。这些问题涵盖 52 个不同的学科，包括STEM，人文科学，社会科学和其他四个大类。进一步探索C-Eval，请访问我们的[网站](https://cevalbenchmark.com/)。我们在网站上面给出了52个科目以及对应的[样例](https://cevalbenchmark.com/static/explore.html)。并且，您可以通过我们的网站上传测试结果，获得对应的数据，在[排行榜](https://cevalbenchmark.com/static/leaderboard.html)展示成绩。
 
 
+
+### 排行榜
+
+| Model               | STEM | Social Science | Humanities | Other | Average |
+| ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
+| Random              | 25.0 |      25.0      |    25.0    | 25.0  |  25.0   |
+| GPT-4               | 67.1 |      77.6      |    64.5    | 67.8  |  68.7   |
+| ChatGPT             | 52.9 |      61.8      |    50.9    | 53.6  |  54.4   |
+| Claude-v1.3         | 51.9 |      61.7      |    52.1    | 53.7  |  54.2   |
+| MiniMax             | 40.6 |      60.3      |    56.6    | 46.6  |  49.0   |
+| Claude-instant-v1.0 | 43.1 |      53.8      |    44.2    | 45.4  |  45.9   |
+| GLM-130B            | 34.8 |      48.7      |    43.3    | 39.8  |  40.3   |
+| Bloomz-mt           | 35.3 |      45.1      |    40.5    | 38.5  |  39.0   |
+| LLaMA-65B           | 37.8 |      45.6      |    36.1    | 37.1  |  38.8   |
+| ChatGLM-6B          | 30.4 |      39.6      |    37.4    | 34.5  |  34.5   |
+| Chinese LLaMA-13B   | 31.6 |      37.2      |    33.6    | 32.8  |  33.3   |
+| MOSS                | 28.6 |      36.8      |    31.0    | 30.3  |  31.1   |
+| Chinese Alpaca-13B  | 26.0 |      27.2      |    27.8    | 26.4  |  26.7   |
+
+### C-Eval Hard排行榜
+
+我们选取了C-Eval中具有挑战性的数学、物理和化学科目组成C-Eval Hard，包括：高等数学、离散数学、概率统计、大学化学、大学物理、高中数学、高中物理、高中化学八个科目。这些科目包含了复杂的LaTex公式，需要非凡的推理能力才能解决。下面给出C-Eval Hard排行榜。
+
+| Model               | Accuracy |
+| ------------------- | :------: |
+| GPT-4               |   54.9   |
+| ChatGPT             |   41.4   |
+| Claude-v1.3         |   39.0   |
+| Claude-instant-v1.0 |   35.5   |
+| LLaMA-65B           |   31.7   |
+| Bloomz-mt           |   30.4   |
+| GLM-130B            |   30.3   |
+| Chinese LLaMA-13B   |   27.3   |
+| MiniMax             |   27.3   |
+| Chinese Alpaca-13B  |   27.1   |
+| MOSS                |   24.0   |
+| ChatGLM-6B          |   23.1   |
 
 ### 下载方法
 
