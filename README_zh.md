@@ -133,7 +133,7 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
   dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
   ```
   
-* [下载](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw)压缩文件解压后，使用Pandas等库读取。例如：
+* 从 [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw)下载压缩文件并解压后，使用Pandas等库读取。例如：
 
   ```python
   import os
