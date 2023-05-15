@@ -1,4 +1,4 @@
-<p align="center"> <img src="resources/Untitled_1_00.png" style="width: 85%;" id="title-icon">       </p>
+<p align="center"> <img src="resources/title.png" style="width: 85%;" id="title-icon">       </p>
 
 <p align="center">
    🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://github.com/SJTU-LIT/ceval/tree/main#download" target="_blank">Download</a> •   📃 <a href="https://google.com"" target="_blank">Paper</a>  <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">   中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English 
@@ -23,7 +23,7 @@
 
 C-Eval is a comprehensive language model Chinese evaluation component, aimed at evaluating the knowledge and reasoning ability of language models in the Chinese context. C-Eval includes multiple-choice questions at four levels of difficulty: middle school, high school, college, and professional tests. These questions cover 52 different subjects, including STEM, humanities, social sciences, and four other categories. For further exploration of C-Eval, please visit our [website](https://cevalbenchmark.com/). We provide the 52 subjects and corresponding samples on the website. Additionally, you can submit test results through our website, and obtain corresponding score, which will be displayed on the [leaderboard](https://cevalbenchmark.com/static/leaderboard.html)
 
-<img src="https://cevalbenchmark.com/static/img/overview.png" style="zoom: 80%;" >
+<img src="resources/overview.png" style="zoom: 80%;" >
 
 ### Leaderboard
 
