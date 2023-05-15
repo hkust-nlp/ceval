@@ -1,20 +1,8 @@
-<center><div style="justify-content:center; align-items: center; display: flex; flex-direction: row;"><img src="resources/logo.png" alt="Smiley face"  width="12%" >  <span style=';font-size:50px;font-family:sans-serif;'>   C-Eval     </span></div></center>
+<p align="center"> <img src="resources/Untitled_00.png" style="width: 30%;" id="title-icon">       </p>
 
 <p align="center">
    🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw" target="_blank">下载</a> •  ✉️ <a href="mailto:ceval.benchmark@gmail.com">邮箱</a> • 📃 <a href="https://google.com"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_en.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">中文</a>
 </p>
-
-
-<div style="justify-content:center; align-items: center; display: flex; flex-direction: row;"><img src="resources/logo.png" alt="Smiley face"  width="12%" >  <span style=';font-size:50px;font-family:sans-serif;'>   C-Eval     </span></div>
-
-
-
-<center> <div style="justify-content: center;"><img src="resources/logo.png" alt="Smiley face"  width="100" >  <span style=';font-size:50px;font-family:sans-serif;'>   C-Eval
-    </span></div> </center>
-
-<center> <img src="resources/logo.png" width="12%"; align="top" id="title-icon">  <span style=';font-size:50px;font-family:sans-serif;'>   C-Eval
-    </span> </center>
-
 ### 目录
 
 * [介绍](#介绍)
