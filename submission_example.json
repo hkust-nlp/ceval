@@ -1,0 +1,262 @@
+{
+    "chinese_language_and_literature": {
+        "0": "A",
+        "1": "B",
+        "2": "B"
+    },
+    "clinical_medicine": {
+        "0": "C",
+        "1": "D",
+        "2": "C"
+    },
+    "sports_science": {
+        "0": "D",
+        "1": "C",
+        "2": "B"
+    },
+    "civil_servant": {
+        "0": "A",
+        "1": "B",
+        "2": "D"
+    },
+    "veterinary_medicine": {
+        "0": "D",
+        "1": "B",
+        "2": "C"
+    },
+    "middle_school_chemistry": {
+        "0": "A",
+        "1": "A",
+        "2": "C"
+    },
+    "middle_school_history": {
+        "0": "C",
+        "1": "D",
+        "2": "A"
+    },
+    "middle_school_geography": {
+        "0": "C",
+        "1": "C",
+        "2": "C"
+    },
+    "middle_school_politics": {
+        "0": "B",
+        "1": "B",
+        "2": "D"
+    },
+    "middle_school_mathematics": {
+        "0": "B",
+        "1": "D",
+        "2": "C"
+    },
+    "middle_school_physics": {
+        "0": "A",
+        "1": "A",
+        "2": "D"
+    },
+    "middle_school_biology": {
+        "0": "C",
+        "1": "A",
+        "2": "A"
+    },
+    "physician": {
+        "0": "B",
+        "1": "D",
+        "2": "D"
+    },
+    "basic_medicine": {
+        "0": "D",
+        "1": "B",
+        "2": "D"
+    },
+    "modern_chinese_history": {
+        "0": "C",
+        "1": "C",
+        "2": "D"
+    },
+    "college_chemistry": {
+        "0": "B",
+        "1": "A",
+        "2": "C"
+    },
+    "college_physics": {
+        "0": "C",
+        "1": "C",
+        "2": "A"
+    },
+    "college_economics": {
+        "0": "A",
+        "1": "A",
+        "2": "B"
+    },
+    "college_programming": {
+        "0": "D",
+        "1": "D",
+        "2": "D"
+    },
+    "professional_tour_guide": {
+        "0": "B",
+        "1": "B",
+        "2": "A"
+    },
+    "business_administration": {
+        "0": "C",
+        "1": "B",
+        "2": "A"
+    },
+    "ideological_and_moral_cultivation": {
+        "0": "A",
+        "1": "C",
+        "2": "A"
+    },
+    "operating_system": {
+        "0": "C",
+        "1": "A",
+        "2": "D"
+    },
+    "teacher_qualification": {
+        "0": "C",
+        "1": "C",
+        "2": "B"
+    },
+    "education_science": {
+        "0": "D",
+        "1": "D",
+        "2": "B"
+    },
+    "plant_protection": {
+        "0": "B",
+        "1": "D",
+        "2": "B"
+    },
+    "probability_and_statistics": {
+        "0": "C",
+        "1": "C",
+        "2": "A"
+    },
+    "mao_zedong_thought": {
+        "0": "B",
+        "1": "B",
+        "2": "B"
+    },
+    "law": {
+        "0": "D",
+        "1": "B",
+        "2": "B"
+    },
+    "legal_professional": {
+        "0": "D",
+        "1": "C",
+        "2": "D"
+    },
+    "accountant": {
+        "0": "A",
+        "1": "B",
+        "2": "D"
+    },
+    "urban_and_rural_planner": {
+        "0": "B",
+        "1": "C",
+        "2": "A"
+    },
+    "fire_engineer": {
+        "0": "A",
+        "1": "C",
+        "2": "C"
+    },
+    "electrical_engineer": {
+        "0": "B",
+        "1": "A",
+        "2": "A"
+    },
+    "metrology_engineer": {
+        "0": "B",
+        "1": "B",
+        "2": "C"
+    },
+    "environmental_impact_assessment_engineer": {
+        "0": "D",
+        "1": "B",
+        "2": "A"
+    },
+    "discrete_mathematics": {
+        "0": "C",
+        "1": "A",
+        "2": "C"
+    },
+    "tax_accountant": {
+        "0": "A",
+        "1": "C",
+        "2": "C"
+    },
+    "art_studies": {
+        "0": "A",
+        "1": "B",
+        "2": "A"
+    },
+    "computer_architecture": {
+        "0": "A",
+        "1": "C",
+        "2": "A"
+    },
+    "computer_network": {
+        "0": "D",
+        "1": "B",
+        "2": "C"
+    },
+    "logic": {
+        "0": "B",
+        "1": "A",
+        "2": "B"
+    },
+    "marxism": {
+        "0": "B",
+        "1": "B",
+        "2": "B"
+    },
+    "high_school_chemistry": {
+        "0": "B",
+        "1": "C",
+        "2": "D"
+    },
+    "high_school_history": {
+        "0": "A",
+        "1": "D",
+        "2": "A"
+    },
+    "high_school_geography": {
+        "0": "B",
+        "1": "A",
+        "2": "D"
+    },
+    "high_school_politics": {
+        "0": "B",
+        "1": "A",
+        "2": "B"
+    },
+    "high_school_mathematics": {
+        "0": "D",
+        "1": "D",
+        "2": "A"
+    },
+    "high_school_physics": {
+        "0": "C",
+        "1": "C",
+        "2": "C"
+    },
+    "high_school_biology": {
+        "0": "B",
+        "1": "A",
+        "2": "B"
+    },
+    "high_school_chinese": {
+        "0": "D",
+        "1": "B",
+        "2": "A"
+    },
+    "advanced_mathematics": {
+        "0": "C",
+        "1": "D",
+        "2": "A"
+    }
+}
