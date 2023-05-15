@@ -29,7 +29,6 @@ C-Eval is a comprehensive language model Chinese evaluation component, aimed at 
 
 | Model               | STEM | Social Science | Humanities | Other | Average |
 | ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
-| Random              | 25.0 |      25.0      |    25.0    | 25.0  |  25.0   |
 | GPT-4               | 67.1 |      77.6      |    64.5    | 67.8  |  68.7   |
 | ChatGPT             | 52.9 |      61.8      |    50.9    | 53.6  |  54.4   |
 | Claude-v1.3         | 51.9 |      61.7      |    52.1    | 53.7  |  54.2   |
