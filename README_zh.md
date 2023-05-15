@@ -12,8 +12,9 @@
 * [排行榜](#排行榜)
 * [C-Eval Hard 排行榜](#c-eval-hard-排行榜)
 * [数据格式](#数据格式)
-* [下载方法](#下载方法)
-* [使用](#使用)
+* [下载](#下载)
+* [使用方法](#使用方法)
+* [提交方法](#提交方法)
 * [Licenses](#licenses)
 
 
@@ -23,6 +24,8 @@
 C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言模型在中文语境中的知识和推理能力。C-Eval 包括四个难度级别的多项选择题：初中、高中、大学和专业测试。这些问题涵盖 52 个不同的学科，包括STEM，人文科学，社会科学和其他四个大类。进一步探索C-Eval，请访问我们的[网站](https://cevalbenchmark.com/)。我们在网站上面给出了52个科目以及对应的[样例](https://cevalbenchmark.com/static/explore.html)。并且，您可以通过我们的网站上传测试结果，获得对应的分数，在[排行榜](https://cevalbenchmark.com/static/leaderboard.html)展示成绩。
 
 <img src="https://cevalbenchmark.com/static/img/overview.png" style="zoom: 80%;" >
+
+
 
 ### 排行榜
 
@@ -90,7 +93,7 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 
 
 
-### 下载方法
+### 下载数据集
 
 * 方法一：[Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw)下载
 
@@ -103,7 +106,7 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 
 
 
-### 使用
+### 使用方法
 
 * 为了方便使用，我们整理了52个科目对应的文件名和中英文名称，参考[subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json)。格式如下：
 
@@ -142,6 +145,32 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
   
 
 
+
+### 提交方法
+
+* 为了防止数据泄露，我们的测试集并不包含答案。您可以在我们的[网站](https://cevalbenchmark.com/static/user_interface.html)提交您的答案，获得每一个科目的详细分数。如果您希望在排行榜展示您的成绩，可以填写对应的[腾讯表格](https://wj.qq.com/s2/12231619/29e6/)，我们会在人工审核通过后添加。
+
+* 具体地，需要提交一份utf-8编码的json文件，格式要求如下所示，具体参考[submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json)
+
+  ```
+  {
+      "chinese_language_and_literature": {
+          "0": "A",
+          "1": "B",
+          "2": "B",
+          ...
+      },
+      
+      "subject_name":{
+      "0":"ans_1",
+      "1":"ans_2",
+      ...
+      }
+      ....
+  }
+  ```
+
+  
 
 ### Licenses
 

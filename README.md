@@ -14,6 +14,7 @@
 - [Data Format](#data-format)
 - [Download](#download)
 - [Usage](#usage)
+- [Submission Guide](#submission-guide)
 - [Licenses](#licenses)
 
 
@@ -136,6 +137,33 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
   
   File_Dir="data"
   test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
+  ```
+
+
+
+
+### Submission Guide
+
+* To prevent data leakage, our test sets do not include answers. You can submit your answers on our [website](https://cevalbenchmark.com/static/user_interface.html) to obtain a detailed score for each subject. If you wish to display your results in the leaderboard, you can fill in the corresponding [Tencent form](https://wj.qq.com/s2/12231619/29e6/). We will add it after manual review.
+
+* Specifically, you need to submit a UTF-8 encoded JSON file with the following format, please refer to [submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json) for details.
+
+  ```
+  {
+      "chinese_language_and_literature": {
+          "0": "A",
+          "1": "B",
+          "2": "B",
+          ...
+      },
+      
+      "subject_name":{
+      "0":"ans_1",
+      "1":"ans_2",
+      ...
+      }
+      ....
+  }
   ```
 
   
