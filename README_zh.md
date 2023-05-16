@@ -1,7 +1,7 @@
 <p align="center"> <img src="resources/title.png" style="width: 85%;" id="title-icon">       </p>
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#下载" target="_blank">下载</a> • 📃 <a href="https://arxiv.org/abs/2305.08322"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">中文</a>
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#数据" target="_blank">数据</a> • 📃 <a href="https://arxiv.org/abs/2305.08322"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">中文</a>
 </p>
 
 
