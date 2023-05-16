@@ -152,7 +152,7 @@ explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方�
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-本项目遵循 [MIT License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+本项目遵循 [MIT License](https://lbesson.mit-license.org/).
 
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 

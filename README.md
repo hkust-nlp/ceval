@@ -146,12 +146,12 @@ You need to first prepare a UTF-8 encoded JSON file with the following format, p
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-This work is licensed under a [MIT License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+This work is licensed under a [MIT License](https://lbesson.mit-license.org/).
 
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 This work is licensed under a
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 
 
@@ -166,3 +166,5 @@ journal={arXiv preprint arXiv:2305.08322},
 year={2023}
 }
 ```
+
+[cc-by-nc-sa]:
