@@ -80,6 +80,7 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
   dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
   ```
 
+#### Notes
 To facilitate usage, we have organized the subject name handlers and English/Chinese names corresponding to 52 subjects. Please refer to [subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json) for details. The format is as follows:
 
   ```
