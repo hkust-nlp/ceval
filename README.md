@@ -73,7 +73,7 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
   test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
 
-- Method 2: Directly load the dataset using [Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam). Example is as follows
+- Method 2: Directly load the dataset using [huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam). Example is as follows
 
   ```python
   from datasets import load_dataset
