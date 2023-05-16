@@ -1,7 +1,7 @@
 <p align="center"> <img src="resources/title.png" style="width: 85%;" id="title-icon">       </p>
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#download" target="_blank">Download</a> •   📃 <a href="https://arxiv.org/abs/2305.08322" target="_blank">Paper</a>  <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">   中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English 
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#data" target="_blank">Data</a> •   📃 <a href="https://arxiv.org/abs/2305.08322" target="_blank">Paper</a>  <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">   中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English 
 </p>
 
 C-Eval is a comprehensive Chinese evaluation suite for foundation models. It consists of 13948 multi-choice questions spanning 52 diverse disciplines and four difficulty levels, as shown below. Please visit our [website](https://cevalbenchmark.com/) or check our [paper](https://arxiv.org/abs/2305.08322) for more details. 
