@@ -9,8 +9,8 @@ class ChatGLM_Evaluator(Evaluator):
         super(ChatGLM_Evaluator, self).__init__(choices, model_name, k)
         # try adding 'mirror="tuna"' and 'resume_download=True' if facing the 'read timed out' problem
         # or directly clone the model
-        self.tokenizer = AutoTokenizer.from_pretrained("/data12/private/baiyuzhuo/chatglm/chatglm-6b", trust_remote_code=True, mirror="tuna")
-        self.model = AutoModel.from_pretrained("/data12/private/baiyuzhuo/chatglm/chatglm-6b", trust_remote_code=True, mirror="tuna", resume_download=True).half().to(device)
+        self.tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True, mirror="tuna")
+        self.model = AutoModel.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True, mirror="tuna", resume_download=True).half().to(device)
 
     def eval_subject(self, subject_name, test_df, dev_df=None, few_shot=False, cot=False, save_result_dir=None):
         correct_num = 0
