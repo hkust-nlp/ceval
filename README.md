@@ -1,31 +1,27 @@
 <p align="center"> <img src="resources/title.png" style="width: 85%;" id="title-icon">       </p>
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#download" target="_blank">Download</a> •   📃 <a href="https://google.com"" target="_blank">Paper</a>  <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">   中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English 
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#download" target="_blank">Download</a> •   📃 <a href="https://arxiv.org/abs/2305.08322" target="_blank">Paper</a>  <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">   中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English 
 </p>
-
-
-
-### Table of Contents
-
-- [Introduction](#introduction)
-- [Leaderboard](#leaderboard)
-- [C-Eval Hard Leaderboard](#c-eval-hard-leaderboard)
-- [Data Format](#data-format)
-- [Download](#download)
-- [Usage](#usage)
-- [Submission Guide](#submission-guide)
-- [Licenses](#licenses)
-
-
-
-### Introduction
-
-C-Eval is a comprehensive language model Chinese evaluation component, aimed at evaluating the knowledge and reasoning ability of language models in the Chinese context. C-Eval includes multiple-choice questions at four levels of difficulty: middle school, high school, college, and professional tests. These questions cover 52 different subjects, including STEM, humanities, social sciences, and four other categories. For further exploration of C-Eval, please visit our [website](https://cevalbenchmark.com/). We provide the 52 subjects and corresponding samples on the website. Additionally, you can submit test results through our website, and obtain corresponding score, which will be displayed on the [leaderboard](https://cevalbenchmark.com/static/leaderboard.html)
+      
+C-Eval is a comprehensive Chinese evaluation suite for foundation models. It consists of 13948 multi-choice questions spanning 52 diverse disciplines and four difficulty levels, as shown below. Please visit our [website](https://cevalbenchmark.com/) or check our [paper](https://arxiv.org/abs/2305.08322) for more details. 
 
 <img src="resources/overview.png" style="zoom: 80%;" >
 
-### Leaderboard
+
+
+## Table of Contents
+
+- [Leaderboard](#leaderboard)
+- [C-Eval Hard Leaderboard](#c-eval-hard-leaderboard)
+- [Data](#data)
+- [How to Submit](#how-to-submit)
+- [Licenses](#licenses)
+- [Citation](#citation)
+
+
+## Leaderboard
+Below are from the models that we evaluate in the initial release, please visit our official [Leaderboard](https://cevalbenchmark.com/static/leaderboard.html) for up-to-date models and their detailed results on each subject.
 
 | Model               | STEM | Social Science | Humanities | Other | Average |
 | ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
@@ -44,7 +40,7 @@ C-Eval is a comprehensive language model Chinese evaluation component, aimed at 
 
 
 
-### C-Eval Hard Leaderboard
+## C-Eval Hard Leaderboard
 
 We select 8 challenging math, physics, and chemistry subjects from C-Eval to form a separate benchmark, C-Eval Hard, which includes advanced mathematics, discrete mathematics, probability and statistics, college chemistry, college physics, high school mathematics, high school chemistry, and high school physics. These subjects often involve with complex LaTeX equations and require non-trivial reasoning ability to solve.
 
@@ -65,32 +61,17 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 
 
 
-### Data Format
-
-* We have divided each subject into three sets: dev, val, and test.  The dev set per subject consists of five exemplars to facilitate few-shot evaluation.  The val set is intended to be used for hyperparameter tuning. And the test set is for model evaluation.
-
-* The data is stored in the csv format and using the utf-8 encoding format.
-
-* Take computer network as an example:
-
+## Data
+   
+#### Download
+- Method 1: Download from [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw), the data is stored in the csv format and using utf-8 encoding. Then the data may be loaded with pandas:
   ```python
-  id: 1
-  question: 滑动窗口的作用是____。
-  A: 流量控制
-  B: 拥塞控制
-  C: 路由控制
-  D: 差错控制
-  answer: A
-  explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
+  import os
+  import pandas as pd
+  
+  File_Dir="data"
+  test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
-
-* **Note: The explanation is not included in the val set, and the answer and explanation have been removed from the test set to prevent data leak.**
-
-
-
-### Download
-
-- Method 1: Download from [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw)
 
 - Method 2: Directly load the dataset using [Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam). Example is as follows
 
@@ -99,13 +80,10 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
   dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
   ```
 
-
-
-### Usage
-
-* To facilitate usage, we have organized the file names and English/Chinese names corresponding to 52 subjects. Please refer to [subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json) for details. The format is as follows:
+To facilitate usage, we have organized the subject name handlers and English/Chinese names corresponding to 52 subjects. Please refer to [subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json) for details. The format is as follows:
 
   ```
+  # the dict key is the subject handler, and the dict value is (English name, Chinese name, category) tuple 
   {
       "computer_network": [
           "Computer Network",
@@ -120,34 +98,27 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
       ]
   }
   ```
+   
+Each subject consists of three splits: dev, val, and test.  The dev set per subject consists of five exemplars with explanations for few-shot evaluation. The val set is intended to be used for hyperparameter tuning. And the test set is for model evaluation. Labels on the test split are not released, users are required to submit their results to automatically obtain test accuracy. [How to submit?](#how-to-submit) 
 
-* Load from [Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam). We have divided dataset into three sets: dev, validation, and test.
-
-  ```python
-  from datasets import load_dataset
-  dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
-  ```
-
-* After downloading from [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw) and unzipping the compressed file, use libraries such as Pandas to read it. For example:
-
-  ```python
-  import os
-  import pandas as pd
-  
-  File_Dir="data"
-  test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
-  ```
-
-
-
-
-### Submission Guide
-
-* To prevent data leakage, our test sets do not include answers. You can submit your answers on our [website](https://cevalbenchmark.com/static/user_interface.html) to obtain a detailed score for each subject. If you wish to display your results in the leaderboard, you can fill in the corresponding [Tencent form](https://wj.qq.com/s2/12231619/29e6/). We will add it after manual review.
-
-* Specifically, you need to submit a UTF-8 encoded JSON file with the following format, please refer to [submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json) for details.
+Below is a dev example from computer network:
 
   ```
+  id: 1
+  question: 滑动窗口的作用是____。
+  A: 流量控制
+  B: 拥塞控制
+  C: 路由控制
+  D: 差错控制
+  answer: A
+  explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
+  ```
+
+## How to Submit
+You need to first prepare a UTF-8 encoded JSON file with the following format, please refer to [submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json) for details.
+
+  ```
+  ## key within each subject is the "id" field from the dataset
   {
       "chinese_language_and_literature": {
           "0": "A",
@@ -164,10 +135,11 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
       ....
   }
   ```
+  Then you can submit the prepared json file [here](https://cevalbenchmark.com/static/user_interface.html), **note that you need to first log in to access the submission page**.
 
   
 
-### Licenses
+## Licenses
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
@@ -176,3 +148,14 @@ This work is licensed under a [MIT License](http://creativecommons.org/licenses/
 [![License: CC BY-SA 4.0](https://camo.githubusercontent.com/bdc6a3b8963aa99ff57dfd6e1e4b937bd2e752bcb1f1936f90368e5c3a38f670/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d434325323042592d2d5341253230342e302d6c69676874677265792e737667)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 The C-Eval dataset is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+   
+## Citation
+Please cite our paper if you use our dataset.
+```
+@article{huang2023ceval,
+title={C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models}, 
+author={Huang, Yuzhen and Bai, Yuzhuo and Zhu, Zhihao and Zhang, Junlei and Zhang, Jinghan and Su, Tangjun and Liu, Junteng and Lv, Chuancheng and Zhang, Yikai and Lei, Jiayi and Qi, Fanchao and Fu, Yao and Sun, Maosong and He, Junxian},
+journal={arXiv preprint arXiv:2305.08322},
+year={2023}
+}
+```
