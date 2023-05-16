@@ -73,7 +73,7 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
   test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
 
-- Method 2: Directly load the dataset using [huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam). Example is as follows
+- Method 2: Directly load the dataset using [huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam):
 
   ```python
   from datasets import load_dataset
@@ -81,7 +81,7 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
   ```
 
 #### Notes
-To facilitate usage, we have organized the subject name handlers and English/Chinese names corresponding to 52 subjects. Please refer to [subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json) for details. The format is as follows:
+To facilitate usage, we have organized the subject name handlers and English/Chinese names corresponding to 52 subjects. Please refer to [subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json) for details. The format is:
 
   ```
   # the dict key is the subject handler, and the dict value is (English name, Chinese name, category) tuple 
