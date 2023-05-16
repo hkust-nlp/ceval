@@ -166,5 +166,3 @@ journal={arXiv preprint arXiv:2305.08322},
 year={2023}
 }
 ```
-
-[cc-by-nc-sa]:
