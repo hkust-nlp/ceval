@@ -1,33 +1,31 @@
 <p align="center"> <img src="resources/title.png" style="width: 85%;" id="title-icon">       </p>
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#下载" target="_blank">下载</a> • 📃 <a href="https://google.com"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">中文</a>
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#下载" target="_blank">下载</a> • 📃 <a href="https://arxiv.org/abs/2305.08322"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">中文</a>
 </p>
 
 
 
-### 目录
-
-* [介绍](#介绍)
-* [排行榜](#排行榜)
-* [C-Eval Hard 排行榜](#c-eval-hard-排行榜)
-* [数据格式](#数据格式)
-* [下载](#下载)
-* [使用方法](#使用方法)
-* [提交方法](#提交方法)
-* [Licenses](#licenses)
-
-
-
-### 介绍
-
-C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言模型在中文语境中的知识和推理能力。C-Eval 包括四个难度级别的多项选择题：初中、高中、大学和专业测试。这些问题涵盖 52 个不同的学科，包括STEM，人文科学，社会科学和其他四个大类。进一步探索C-Eval，请访问我们的[网站](https://cevalbenchmark.com/index_zh.html)。我们在网站上面给出了52个科目以及对应的[样例](https://cevalbenchmark.com/static/explore_zh.html)。并且，您可以通过我们的网站上传测试结果，获得对应的分数，在[排行榜](https://cevalbenchmark.com/static/leaderboard_zh.html)展示成绩。
+C-Eval 是全面的中文基础模型评估套件，涵盖了52个不同学科的13948个多项选择题，分为四个难度级别，如下所示。更多详情，请访问我们的[网站](https://cevalbenchmark.com/)或查看我们的[论文](https://arxiv.org/abs/2305.08322)。
 
 <img src="resources/overview.png" style="zoom: 80%;" >
 
 
 
-### 排行榜
+## 目录
+
+* [排行榜](#排行榜)
+* [C-Eval Hard 排行榜](#c-eval-hard-排行榜)
+* [数据](#数据)
+* [如何提交](#如何提交)
+* [Licenses](#licenses)
+* [引用](#引用)
+
+
+
+## 排行榜
+
+下面列出了我们在初始版本中进行评估的模型，请访问我们官方[排行榜](https://cevalbenchmark.com/static/leaderboard_zh.html)了解最新模型及其在每个学科中的详细结果。
 
 | Model               | STEM | Social Science | Humanities | Other | Average |
 | ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
@@ -46,7 +44,7 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 
 
 
-### C-Eval Hard 排行榜
+## C-Eval Hard 排行榜
 
 我们选取了C-Eval中具有挑战性的数学、物理和化学科目组成C-Eval Hard，包括：高等数学、离散数学、概率统计、大学化学、大学物理、高中数学、高中物理、高中化学八个科目。这些科目包含了复杂的LaTex公式，需要非凡的推理能力才能解决。
 
@@ -67,109 +65,90 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 
 
 
-### 数据格式
-
-* 我们将每一个科目分为dev，val和test三个集合。dev集主要用于Few-shot Learning（包含5条数据），val集用于模型调试，test集用于最终测试。
-
-* 数据采用csv格式进行封装，采用utf-8编码格式。
-
-* 以计算机网络为例：
-
-  ```
-  id: 1
-  question: 滑动窗口的作用是____。
-  A: 流量控制
-  B: 拥塞控制
-  C: 路由控制
-  D: 差错控制
-  answer: A
-  explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
-  ```
-
-* **注意：val集不包含explanation。并且，为了防止数据泄露，test集不包含answer和explanation**。
-
-
+## 数据
 
 ### 下载
 
-* 方法一：[Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw)下载
-
-* 方法二：使用[Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam)直接加载数据集，样例如下：
-
-  ```python
-  from datasets import load_dataset
-  dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
-  ```
-
-
-
-### 使用方法
-
-* 为了方便使用，我们整理了52个科目对应的文件名和中英文名称，参考[subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json)。格式如下：
+* 方法一：从 [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw) 下载，数据以 csv 格式存储，使用 UTF-8 编码。然后可以使用 pandas加载数据：
 
   ```
-  {
-  	"computer_network": [
-  		"Computer Network",
-  		"计算机网络",
-  		"STEM"
-  	],
-  	...
-  	"filename":[
-  	"英文名称",
-  	"中文名称"
-  	"类别(STEM,Social Science,Humanities,Other四选一)"
-  	]
-  }
-  ```
-
-* 从[Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam)使用，分为"dev"，"validation"和"test"三个集合
-
-  ```python
-  from datasets import load_dataset
-  dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
-  ```
-  
-* 从 [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw)下载压缩文件并解压后，使用Pandas等库读取。例如：
-
-  ```python
   import os
   import pandas as pd
   
   File_Dir="data"
   test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
-  
 
+* 方法二：使用[Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam)直接加载数据集。示例如下：
 
-
-### 提交方法
-
-* 为了防止数据泄露，我们的测试集并不包含答案。您可以在我们的[网站](https://cevalbenchmark.com/static/user_interface_zh.html)提交您的答案，获得每一个科目的详细分数。如果您希望在排行榜展示您的成绩，可以填写对应的[腾讯表格](https://wj.qq.com/s2/12231619/29e6/)，我们会在人工审核通过后添加。
-
-* 具体地，需要提交一份UTF-8编码的JSON文件，格式要求如下，具体参考[submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json)
-
-  ```
-  {
-      "chinese_language_and_literature": {
-          "0": "A",
-          "1": "B",
-          "2": "B",
-          ...
-      },
-      
-      "subject_name":{
-      "0":"ans_1",
-      "1":"ans_2",
-      ...
-      }
-      ....
-  }
+  ```python
+  from datasets import load_dataset
+  dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
   ```
 
-  
+为了方便使用，我们已经整理出了与 52 个科目对应的学科名称处理程序以及它们的中英文名称。具体细节请查看 [subject_mapping.json](https://github.com/SJTU-LIT/ceval/blob/main/subject_mapping.json)。格式如下：
 
-### Licenses
+```
+{
+	"computer_network": [
+		"Computer Network",
+		"计算机网络",
+		"STEM"
+	],
+	...
+	"filename":[
+	"英文名称",
+	"中文名称"
+	"类别(STEM,Social Science,Humanities,Other四选一)"
+	]
+}
+```
+
+每个科目由三个部分组成：dev、val 和 test。每个科目的 dev 集包含五个示范实例以及为 few-shot 评估提供的解释。val 集旨在用于超参数调整。而 test 集则用于模型评估。test 集上的标签不会公开，需要用户提交其结果才能自动获得测试准确性。[如何提交？](#如何提交) 
+
+下面是计算机网络的示例：
+
+```
+id: 1
+question: 滑动窗口的作用是____。
+A: 流量控制
+B: 拥塞控制
+C: 路由控制
+D: 差错控制
+answer: A
+explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
+```
+
+
+
+## 如何提交
+
+您首先需要准备一个 UTF-8 编码的 JSON 文件，并按照以下格式编写。详情请参考[submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json)。
+
+```
+## 每个学科内部的键名是数据集中的"id"字段
+{
+    "chinese_language_and_literature": {
+        "0": "A",
+        "1": "B",
+        "2": "B",
+        ...
+    },
+    
+    "学科名称":{
+    "0":"答案1",
+    "1":"答案2",
+    ...
+    }
+    ....
+}
+```
+
+然后你可以将准备好的JSON文件提交到[这里](https://cevalbenchmark.com/static/user_interface_zh.html)，**请注意，你需要先登录才能访问提交页面**。
+
+
+
+## Licenses
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
@@ -178,3 +157,19 @@ C-Eval是一个综合性的语言模型中文评估组件，旨在评估语言�
 [![License: CC BY-SA 4.0](https://camo.githubusercontent.com/bdc6a3b8963aa99ff57dfd6e1e4b937bd2e752bcb1f1936f90368e5c3a38f670/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d434325323042592d2d5341253230342e302d6c69676874677265792e737667)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 C-Eval数据集遵循 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+
+
+## 引用
+
+如果您使用了我们的数据集，请引用我们的论文。
+
+```
+@article{huang2023ceval,
+title={C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models}, 
+author={Huang, Yuzhen and Bai, Yuzhuo and Zhu, Zhihao and Zhang, Junlei and Zhang, Jinghan and Su, Tangjun and Liu, Junteng and Lv, Chuancheng and Zhang, Yikai and Lei, Jiayi and Qi, Fanchao and Fu, Yao and Sun, Maosong and He, Junxian},
+journal={arXiv preprint arXiv:2305.08322},
+year={2023}
+}
+```
+

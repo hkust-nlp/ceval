@@ -3,7 +3,7 @@
 <p align="center">
    🌐 <a href="https://cevalbenchmark.com/" target="_blank">Website</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#download" target="_blank">Download</a> •   📃 <a href="https://arxiv.org/abs/2305.08322" target="_blank">Paper</a>  <br>  <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">   中文</a>|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English 
 </p>
-      
+
 C-Eval is a comprehensive Chinese evaluation suite for foundation models. It consists of 13948 multi-choice questions spanning 52 diverse disciplines and four difficulty levels, as shown below. Please visit our [website](https://cevalbenchmark.com/) or check our [paper](https://arxiv.org/abs/2305.08322) for more details. 
 
 <img src="resources/overview.png" style="zoom: 80%;" >
@@ -62,7 +62,7 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 
 
 ## Data
-   
+
 #### Download
 - Method 1: Download from [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw), the data is stored in the csv format and using utf-8 encoding. Then the data may be loaded with pandas:
   ```python
@@ -98,7 +98,7 @@ To facilitate usage, we have organized the subject name handlers and English/Chi
       ]
   }
   ```
-   
+
 Each subject consists of three splits: dev, val, and test.  The dev set per subject consists of five exemplars with explanations for few-shot evaluation. The val set is intended to be used for hyperparameter tuning. And the test set is for model evaluation. Labels on the test split are not released, users are required to submit their results to automatically obtain test accuracy. [How to submit?](#how-to-submit) 
 
 Below is a dev example from computer network:
@@ -114,7 +114,10 @@ Below is a dev example from computer network:
   explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
   ```
 
+
+
 ## How to Submit
+
 You need to first prepare a UTF-8 encoded JSON file with the following format, please refer to [submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json) for details.
 
   ```
@@ -148,7 +151,9 @@ This work is licensed under a [MIT License](http://creativecommons.org/licenses/
 [![License: CC BY-SA 4.0](https://camo.githubusercontent.com/bdc6a3b8963aa99ff57dfd6e1e4b937bd2e752bcb1f1936f90368e5c3a38f670/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d434325323042592d2d5341253230342e302d6c69676874677265792e737667)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 The C-Eval dataset is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
-   
+
+
+
 ## Citation
 Please cite our paper if you use our dataset.
 ```
