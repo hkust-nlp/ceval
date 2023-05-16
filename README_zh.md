@@ -79,7 +79,7 @@ C-Eval 是全面的中文基础模型评估套件，涵盖了52个不同学科�
   test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
 
-* 方法二：使用[Hugging Face](https://huggingface.co/datasets/ceval/ceval-exam)直接加载数据集。示例如下：
+* 方法二：使用[huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam)直接加载数据集。示例如下：
 
   ```python
   from datasets import load_dataset
