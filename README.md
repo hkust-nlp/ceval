@@ -64,7 +64,7 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 
 ## Results On Validation Split
 
-Since we do not publicly release the labels for our test split, we provide the average accuracy on the validation split as a reference for developers. The validation split comprises a total of 1346 questions, with each subject contributing fewer than 30 validation questions on average. Therefore, tracking accuracy on a specific subject may not yield significant insights. Instead, we report the average answer-only accuracy across all subjects in Table below. The average validation accuracy closely mirrors the average test accuracy as presented in [Leaderboard](#learderboard).
+Since we do not publicly release the labels for our test split, we provide the average accuracy on the validation split as a reference for developers. The validation split comprises a total of 1346 questions, with each subject contributing fewer than 30 validation questions on average. Therefore, tracking accuracy on a specific subject may not yield significant insights. Instead, we report the average answer-only accuracy across all subjects in Table below. The average validation accuracy closely mirrors the average test accuracy as presented in [Leaderboard](#leaderboard).
 
 | Model               | Average |
 | ------------------- | :-----: |
