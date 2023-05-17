@@ -14,13 +14,14 @@ C-Eval is a comprehensive Chinese evaluation suite for foundation models. It con
 
 - [Leaderboard](#leaderboard)
 - [C-Eval Hard Leaderboard](#c-eval-hard-leaderboard)
+- [Results on validation split](#results-on-validation-split)
 - [Data](#data)
 - [How to Submit](#how-to-submit)
 - [Licenses](#licenses)
 - [Citation](#citation)
 
-
 ## Leaderboard
+
 Below are from the models that we evaluate in the initial release, please visit our official [Leaderboard](https://cevalbenchmark.com/static/leaderboard.html) for up-to-date models and their detailed results on each subject.
 
 | Model               | STEM | Social Science | Humanities | Other | Average |
@@ -58,6 +59,27 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 | Chinese Alpaca-13B  |   27.1   |
 | MOSS                |   24.0   |
 | ChatGLM-6B          |   23.1   |
+
+
+
+## Results On Validation Split
+
+Since we do not publicly release the labels for our test split, we provide the average accuracy on the validation split as a reference for developers. The validation split comprises a total of 1346 questions, with each subject contributing fewer than 30 validation questions on average. Therefore, tracking accuracy on a specific subject may not yield significant insights. Instead, we report the average answer-only accuracy across all subjects in Table below. The average validation accuracy closely mirrors the average test accuracy as presented in [Leaderboard](#learderboard).
+
+| Model               | Average |
+| ------------------- | :-----: |
+| GPT-4               |  69.9   |
+| Claude-v1.3         |  55.5   |
+| ChatGPT             |  53.5   |
+| MiniMax             |  48.4   |
+| Claude-instant-v1.0 |  47.4   |
+| GLM-130B            |  40.8   |
+| LLaMA-65B           |  39.8   |
+| Bloomz-mt           |  38.0   |
+| ChatGLM-6B          |  37.1   |
+| Chinese-LLaMA-13B   |  33.1   |
+| MOSS                |  28.9   |
+| Chinese-Alpaca-13B  |  27.2   |
 
 
 
