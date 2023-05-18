@@ -95,7 +95,7 @@ Since we do not publicly release the labels for our test split, we provide the a
   test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
   ```
 
-- Method 2: Directly load the dataset using [huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam):
+- Method 2: Directly load the dataset using [Hugging Face datasets](https://huggingface.co/datasets/ceval/ceval-exam):
 
   ```python
   from datasets import load_dataset
