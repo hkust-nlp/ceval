@@ -190,7 +190,7 @@ C-Eval数据集遵循 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0
 ```
 @article{huang2023ceval,
 title={C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models}, 
-author={Huang, Yuzhen and Bai, Yuzhuo and Zhu, Zhihao and Zhang, Junlei and Zhang, Jinghan and Su, Tangjun and Liu, Junteng and Lv, Chuancheng and Zhang, Yikai and Lei, Jiayi and Qi, Fanchao and Fu, Yao and Sun, Maosong and He, Junxian},
+author={Huang, Yuzhen and Bai, Yuzhuo and Zhu, Zhihao and Zhang, Junlei and Zhang, Jinghan and Su, Tangjun and Liu, Junteng and Lv, Chuancheng and Zhang, Yikai and Lei, Jiayi and Fu, Yao and Sun, Maosong and He, Junxian},
 journal={arXiv preprint arXiv:2305.08322},
 year={2023}
 }
