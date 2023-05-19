@@ -6,23 +6,29 @@
 
 C-Eval is a comprehensive Chinese evaluation suite for foundation models. It consists of 13948 multi-choice questions spanning 52 diverse disciplines and four difficulty levels, as shown below. Please visit our [website](https://cevalbenchmark.com/) or check our [paper](https://arxiv.org/abs/2305.08322) for more details. 
 
+We hope C-Eval could help developers track the progress and analyze the important strengths/shortcomings of their models.
+
 <img src="resources/overview.png" style="zoom: 80%;" >
 
 
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Leaderboard](#leaderboard)
 - [C-Eval Hard Leaderboard](#c-eval-hard-leaderboard)
-- [Results on validation split](#results-on-validation-split)
+- [Results On Validation Split](#results-on-validation-split)
 - [Data](#data)
+    - [Download](#download)
+    - [Notes](#notes)
 - [How to Submit](#how-to-submit)
+- [TODO](#todo)
 - [Licenses](#licenses)
 - [Citation](#citation)
 
 ## Leaderboard
 
-Below are from the models that we evaluate in the initial release, please visit our official [Leaderboard](https://cevalbenchmark.com/static/leaderboard.html) for up-to-date models and their detailed results on each subject.
+Below are 5-shot accuracies from the models that we evaluate in the initial release, please visit our official [Leaderboard](https://cevalbenchmark.com/static/leaderboard.html) for up-to-date models and their detailed results on each subject.
 
 | Model               | STEM | Social Science | Humanities | Other | Average |
 | ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
@@ -43,7 +49,7 @@ Below are from the models that we evaluate in the initial release, please visit 
 
 ## C-Eval Hard Leaderboard
 
-We select 8 challenging math, physics, and chemistry subjects from C-Eval to form a separate benchmark, C-Eval Hard, which includes advanced mathematics, discrete mathematics, probability and statistics, college chemistry, college physics, high school mathematics, high school chemistry, and high school physics. These subjects often involve with complex LaTeX equations and require non-trivial reasoning ability to solve.
+We select 8 challenging math, physics, and chemistry subjects from C-Eval to form a separate benchmark, C-Eval Hard, which includes advanced mathematics, discrete mathematics, probability and statistics, college chemistry, college physics, high school mathematics, high school chemistry, and high school physics. These subjects often involve with complex LaTeX equations and require non-trivial reasoning abilities to solve. 5-shot accuracies are shown below.
 
 | Model               | Accuracy |
 | ------------------- | :------: |
@@ -64,7 +70,7 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 
 ## Results On Validation Split
 
-Since we do not publicly release the labels for our test split, we provide the average accuracy on the validation split as a reference for developers. The validation split comprises a total of 1346 questions, with each subject contributing fewer than 30 validation questions on average. Therefore, tracking accuracy on a specific subject may not yield significant insights. Instead, we report the average answer-only accuracy across all subjects in Table below. The average validation accuracy closely mirrors the average test accuracy as presented in [Leaderboard](#leaderboard).
+Since we do not publicly release the labels for our test split, we provide the 5-shot average accuracy on the validation split as a reference for developers. The validation split comprises a total of 1346 questions. We report the average answer-only accuracy across all subjects in table below. The average validation accuracy closely mirrors the average test accuracy as presented in [Leaderboard](#leaderboard).
 
 | Model               | Average |
 | ------------------- | :-----: |
@@ -127,14 +133,16 @@ Each subject consists of three splits: dev, val, and test.  The dev set per subj
 Below is a dev example from computer network:
 
   ```
-  id: 1
-  question: 滑动窗口的作用是____。
-  A: 流量控制
-  B: 拥塞控制
-  C: 路由控制
-  D: 差错控制
-  answer: A
-  explantion: 1. 滑动窗口是一种流量控制机制，用于控制发送方向接收方发送数据的速率，以避免接收方无法处理过多的数据而导致数据丢失或拥塞。
+id: 1
+question: 25 °C时，将pH=2的强酸溶液与pH=13的强碱溶液混合，所得混合液的pH=11，则强酸溶液与强碱溶液 的体积比是(忽略混合后溶液的体积变化)____
+A: 11:1
+B: 9:1
+C: 1:11
+D: 1:9
+answer: B
+explantion: 
+1. pH=13的强碱溶液中c(OH-)=0.1mol/L, pH=2的强酸溶液中c(H+)=0.01mol/L，酸碱混合后pH=11，即c(OH-)=0.001mol/L。
+2. 设强酸和强碱溶液的体积分别为x和y，则：c(OH-)=(0.1y-0.01x)/(x+y)=0.001，解得x:y=9:1。
   ```
 
 
@@ -163,7 +171,8 @@ You need to first prepare a UTF-8 encoded JSON file with the following format, p
   ```
   Then you can submit the prepared json file [here](https://cevalbenchmark.com/static/user_interface.html), **note that you need to first log in to access the submission page**.
 
-  
+## TODO
+- [ ] add zero-shot results
 
 ## Licenses
 
