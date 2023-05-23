@@ -8,7 +8,7 @@ C-Eval is a comprehensive Chinese evaluation suite for foundation models. It con
 
 We hope C-Eval could help developers track the progress and analyze the important strengths/shortcomings of their models.
 
-📝 [Blog on motivation of C-Eval (in Chinese)](https://yaofu.notion.site/C-Eval-6b79edd91b454e3d8ea41c59ea2af873)
+📝 [Why C-Eval? How did we build it? (in Chinese)](https://yaofu.notion.site/C-Eval-6b79edd91b454e3d8ea41c59ea2af873)
 
 <img src="resources/overview.png" style="zoom: 80%;" >
 
