@@ -34,7 +34,6 @@ Below are 5-shot accuracies from the models that we evaluate in the initial rele
 | GPT-4               | 67.1 |      77.6      |    64.5    | 67.8  |  68.7   |
 | ChatGPT             | 52.9 |      61.8      |    50.9    | 53.6  |  54.4   |
 | Claude-v1.3         | 51.9 |      61.7      |    52.1    | 53.7  |  54.2   |
-| MiniMax             | 40.6 |      60.3      |    56.6    | 46.6  |  49.0   |
 | Claude-instant-v1.0 | 43.1 |      53.8      |    44.2    | 45.4  |  45.9   |
 | GLM-130B            | 34.8 |      48.7      |    43.3    | 39.8  |  40.3   |
 | Bloomz-mt           | 35.3 |      45.1      |    40.5    | 38.5  |  39.0   |
@@ -60,7 +59,6 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 | Bloomz-mt           |   30.4   |
 | GLM-130B            |   30.3   |
 | Chinese LLaMA-13B   |   27.3   |
-| MiniMax             |   27.3   |
 | Chinese Alpaca-13B  |   27.1   |
 | MOSS                |   24.0   |
 | ChatGLM-6B          |   23.1   |
@@ -76,7 +74,6 @@ Since we do not publicly release the labels for our test split, we provide the 5
 | GPT-4               |  69.9   |
 | Claude-v1.3         |  55.5   |
 | ChatGPT             |  53.5   |
-| MiniMax             |  48.4   |
 | Claude-instant-v1.0 |  47.4   |
 | GLM-130B            |  40.8   |
 | LLaMA-65B           |  39.8   |
