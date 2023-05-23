@@ -10,19 +10,18 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
 
 我们希望C-Eval能够帮助开发人员跟踪模型开发的进展，以及分析开发中模型的优点和弱点。
 
+📝 [C-Eval的目的和开发过程](https://yaofu.notion.site/C-Eval-6b79edd91b454e3d8ea41c59ea2af873)
+
 <img src="resources/overview.png" style="zoom: 80%;" >
 
 
 
 ## 目录
 
-- [目录](#目录)
 - [排行榜](#排行榜)
 - [C-Eval Hard 排行榜](#c-eval-hard-排行榜)
 - [验证集结果](#验证集结果)
 - [数据](#数据)
-    - [下载](#下载)
-    - [说明](#说明)
 - [如何提交](#如何提交)
 - [TODO](#todo)
 - [Licenses](#licenses)
