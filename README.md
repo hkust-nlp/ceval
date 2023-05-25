@@ -94,14 +94,17 @@ Since we do not publicly release the labels for our test split, we provide the 5
   import pandas as pd
   
   File_Dir="data"
-  test_df=pd.read_csv(os.path.join(File_Dir,"test","advanced_mathematics_test.csv"))
+  test_df=pd.read_csv(os.path.join(File_Dir,"test","computer_network_test.csv"))
   ```
 
 - Method 2: Directly load the dataset using [huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam):
 
   ```python
   from datasets import load_dataset
-  dataset=load_dataset(r"ceval/ceval-exam",name="advanced_mathematics")
+  dataset=load_dataset(r"ceval/ceval-exam",name="computer_network")
+  
+  print(dataset['val'][0])
+  # {'id': 0, 'question': '使用位填充方法，以01111110为位首flag，数据为011011111111111111110010，求问传送时要添加几个0____', 'A': '1', 'B': '2', 'C': '3', 'D': '4', 'answer': 'C', 'explanation': ''}
   ```
 
 #### Notes
