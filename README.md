@@ -20,6 +20,7 @@ We hope C-Eval could help developers track the progress and analyze the importan
 - [C-Eval Hard Leaderboard](#c-eval-hard-leaderboard)
 - [Results On Validation Split](#results-on-validation-split)
 - [Data](#data)
+- [How to Evaluate on C-Eval](#how-to-evaluate-on-c-eval)
 - [How to Submit](#how-to-submit)
 - [TODO](#todo)
 - [Licenses](#licenses)
@@ -88,12 +89,16 @@ Since we do not publicly release the labels for our test split, we provide the 5
 ## Data
 
 #### Download
-- Method 1: Download from [Onedrive](https://onedrive.live.com/download?cid=19737A21B01C55D4&resid=19737A21B01C55D4!983&authkey=AGch_tVH959ZJiw), the data is stored in the csv format and using utf-8 encoding. Then the data may be loaded with pandas:
+- Method 1: Download the zip file (you can also simply open the following link with the browser):
+  ```
+  wget https://huggingface.co/datasets/ceval/ceval-exam/blob/main/ceval-exam.zip
+  ```
+  then unzip it and you may load the data with pandas:
   ```python
   import os
   import pandas as pd
   
-  File_Dir="data"
+  File_Dir="ceval-exam"
   test_df=pd.read_csv(os.path.join(File_Dir,"test","computer_network_test.csv"))
   ```
 
@@ -102,7 +107,7 @@ Since we do not publicly release the labels for our test split, we provide the 5
   ```python
   from datasets import load_dataset
   dataset=load_dataset(r"ceval/ceval-exam",name="computer_network")
-  
+
   print(dataset['val'][0])
   # {'id': 0, 'question': '使用位填充方法，以01111110为位首flag，数据为011011111111111111110010，求问传送时要添加几个0____', 'A': '1', 'B': '2', 'C': '3', 'D': '4', 'answer': 'C', 'explanation': ''}
   ```
@@ -144,6 +149,56 @@ explantion:
 2. 设强酸和强碱溶液的体积分别为x和y，则：c(OH-)=(0.1y-0.01x)/(x+y)=0.001，解得x:y=9:1。
   ```
 
+## How to Evaluate on C-Eval
+Normally you can directly take the model's generations and extract the answer token (i.e. A,B,C,D) from it. In few-shot evaluation, the model usually follows the given template thus this is easy. Sometimes, however, especially in zero-shot evaluation for models without experiencing instruction tuning, the model may not follow the instruction well to give a well-formatted generation, in this case we recommend computing the probability of "A", "B", "C", "D" and take the most likely one as the answer -- this is a constrained decoding approach and was used in the official [MMLU test code](https://github.com/hendrycks/test/blob/4450500f923c49f1fb1dd3d99108a0bd9717b660/evaluate.py#L88). Such a probability approach is not applicable for chain-of-thought settings.
+
+We use the following prompt when evaluating the models in our first release:
+#### answer-only prompt
+```
+以下是中国关于{科目}考试的单项选择题，请选出其中的正确答案。
+
+{题目1}
+A. {选项A}
+B. {选项B}
+C. {选项C}
+D. {选项D}
+答案：A
+
+[k-shot demo, note that k is 0 in the zero-shot case]
+
+{测试题目}
+A. {选项A}
+B. {选项B}
+C. {选项C}
+D. {选项D}
+答案：
+```
+
+#### chain-of-thought prompt
+```
+以下是中国关于{科目}考试的单项选择题，请选出其中的正确答案。
+
+{题目1}
+A. {选项A}
+B. {选项B}
+C. {选项C}
+D. {选项D}
+答案：让我们一步一步思考，
+1. {解析过程步骤1}
+2. {解析过程步骤2}
+3. {解析过程步骤3}
+所以答案是A。
+
+[k-shot demo, note that k is 0 in the zero-shot case]
+
+{测试题目}
+A. {选项A}
+B. {选项B}
+C. {选项C}
+D. {选项D}
+答案：让我们一步一步思考，
+1. 
+```
 
 
 ## How to Submit
