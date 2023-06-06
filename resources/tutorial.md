@@ -1,17 +1,20 @@
-# C-Eval 数据集评测简明教程
+# 1. C-Eval 数据集评测简明教程
  
-- [C-Eval 数据集评测简明教程](#c-eval-数据集评测简明教程)
-  - [基础知识](#基础知识)
-  - [Prompt 的格式](#prompt-的格式)
-    - [Completion 模式](#completion-模式)
-    - [Chat 模式](#chat-模式)
-  - [Decoding 的方法](#decoding-的方法)
-  - [是否需要做 prompt engineering](#是否需要做-prompt-engineering)
-  - [理解 \[推理\] 和 \[知识\]](#理解-推理-和-知识)
-  - [解读模型的分数](#解读模型的分数)
+**目录** 
 
 
-## 基础知识
+- [1. C-Eval 数据集评测简明教程](#1-c-eval-数据集评测简明教程)
+- [2. 基础知识](#2-基础知识)
+- [3. Prompt 的格式](#3-prompt-的格式)
+  - [3.1. Completion 模式](#31-completion-模式)
+  - [3.2. Chat 模式](#32-chat-模式)
+- [4. Decoding 的方法](#4-decoding-的方法)
+- [5. 是否需要做 prompt engineering](#5-是否需要做-prompt-engineering)
+- [6. 理解 \[推理\] 和 \[知识\]](#6-理解-推理-和-知识)
+- [7. 解读模型的分数](#7-解读模型的分数)
+
+
+# 2. 基础知识
 
 一般有四种 prompting 范式，见 [Fu et. al. 2023](https://arxiv.org/abs/2301.12726) Figure 1B
 <p align="center"> <img src="prompt_format.png" style="width: 60%;" id="title-icon">       </p>
@@ -22,11 +25,11 @@
 
 新手模型推荐从 few-shot answer-only 开始
 
-## Prompt 的格式
+# 3. Prompt 的格式
 
 prompt 的格式非常重要！！注意要换行！！注意每行末尾不要有空格
 
-### Completion 模式
+## 3.1. Completion 模式
 
 如果模型还没有被调成一个 chatbot，那么：
 ```
@@ -96,7 +99,7 @@ D: [选项 D 具体内容]
 答案：<模型从此处生成>
 ```
 
-### Chat 模式
+## 3.2. Chat 模式
 
 如果模型已经调成一个 chatbot，那么 prompt 也需要改成对话的格式：
 ```
@@ -151,13 +154,13 @@ Again，推荐使用 in-context answer-only 作为起点
 
 [Towards Complex Reasoning: the Polaris of Large Language Models](https://tinyurl.com/67c2eazt)
 
-## Decoding 的方法
+# 4. Decoding 的方法
 
 * 测试的时候一般 temperature 设置为 0 做 greedy decoding，因为这种 variance 低
 * 大模型一般不用 beam search，贵且作用不大
 * 上线一般用 sampling，因为用户友好，说错了可以再说一遍
 
-## 是否需要做 prompt engineering 
+# 5. 是否需要做 prompt engineering 
 
 对于 pretrained checkpoint (没有经过 instruction tuning) prompt 的不同会得到很不同的效果
 
@@ -165,7 +168,7 @@ Again，推荐使用 in-context answer-only 作为起点
 
 所以推荐报两份结果，一份是使用我们 dev 文件夹里的数据作为 default prompt 报一次结果，此结果看作 baseline；另一份是根据自己的模型做 prompt engineering 然后报一次结果，此结果看作 upper bound 
 
-## 理解 [推理] 和 [知识]
+# 6. 理解 [推理] 和 [知识]
 
 大模型测测试题目一般分推理和知识两种类型：
 * 有些题目天生不需要 reasoning，比如中国语言文学里面一个是 “《茶馆》的作者是谁”，这种不需要 CoT，直接 AO 即可，CoT 反而增加了 distractor 
@@ -185,7 +188,7 @@ Again，推荐使用 in-context answer-only 作为起点
 关于英文推理能力的 benchmark，参见 [chain-of-thought-hub](https://github.com/FranxYao/chain-of-thought-hub)
 
 
-## 解读模型的分数
+# 7. 解读模型的分数
 
 * 四选一，所以 baseline 是 25 分
 * 但是模型没训练好的话可能低于 25 分
