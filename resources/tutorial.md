@@ -9,15 +9,17 @@
   - [3.1. Completion 模式](#31-completion-模式)
   - [3.2. Chat 模式](#32-chat-模式)
 - [4. Decoding 的方法](#4-decoding-的方法)
-- [5. 是否需要做 prompt engineering](#5-是否需要做-prompt-engineering)
-- [6. 理解 \[推理\] 和 \[知识\]](#6-理解-推理-和-知识)
-- [7. 解读模型的分数](#7-解读模型的分数)
+- [5. 以 few-shot 为准还是以 zero-shot 为准？](#5-以-few-shot-为准还是以-zero-shot-为准)
+- [6. 是否需要做 prompt engineering](#6-是否需要做-prompt-engineering)
+- [7. 理解 \[推理\] 和 \[知识\]](#7-理解-推理-和-知识)
+- [8. 解读模型的分数](#8-解读模型的分数)
 
 
 # 2. 基础知识
 
 一般有四种 prompting 范式，见 [Fu et. al. 2023](https://arxiv.org/abs/2301.12726) Figure 1B
 <p align="center"> <img src="prompt_format.png" style="width: 60%;" id="title-icon">       </p>
+
 * few-shot answer-only <- 推荐从这里开始
 * few-shot chain-of-thought <- 一般 CoT 在模型超过 65B 之后才会显著有效
 * zero-shot answer-only <- instruction tuning 之后用这个
@@ -64,11 +66,9 @@ D: [选项 D 具体内容]
 <模型从此处生成>
 ```
 
-上面是 in-context chain-of-thought 格式的 prompt。如果是 zero-shot 的话，则去掉 [题目 1] 到 [题目 5] 的 in-context 样本
-
-如果模型的 context length 装不下所有的 in-context example，则去掉一两个
-
-如果是 answer-only 的话，则去掉 {让我们一步一步思考 [explanation]} 的内容
+* 上面是 in-context chain-of-thought 格式的 prompt。如果是 zero-shot 的话，则去掉 [题目 1] 到 [题目 5] 的 in-context 样本
+* 如果模型的 context length 装不下所有的 in-context example，则去掉一两个
+* 如果是 answer-only 的话，则去掉 {让我们一步一步思考 [explanation]} 的内容
 
 以下是 few-shot answer-only prompt 的格式
  
@@ -98,6 +98,8 @@ C: [选项 C 具体内容]
 D: [选项 D 具体内容]
 答案：<模型从此处生成>
 ```
+
+这里和 CoT 的区别就是去掉了 {让我们一步一步思考 + CoT} 的内容
 
 ## 3.2. Chat 模式
 
@@ -144,15 +146,12 @@ Assistent:
 [explanation]        <- 模型从此处生成
 答案：
 ```
-对话格式的 prompt 相当于我们让 AI 假装已经正确回答了五个问题（但实际上是被我们 hard code 到 prompt 里的），然后 AI 实际上只回答最后一轮的问题
 
-相应的，对话格式的 zero-shot 和 answer-only 版本的 prompt 需要分别去掉 in-context 样本和 {让我们一步一步思考 [explanation]} 的内容
+* 对话格式的 prompt 相当于我们让 AI 假装已经正确回答了五个问题（但实际上是被我们 hard code 到 prompt 里的），然后 AI 实际上只回答最后一轮的问题
+* 相应的，对话格式的 zero-shot 和 answer-only 版本的 prompt 需要分别去掉 in-context 样本和 {让我们一步一步思考 [explanation]} 的内容
+* Again，推荐使用 in-context answer-only 作为起点
 
-Again，推荐使用 in-context answer-only 作为起点
-
-更多关于 reasoning/ chain-of-thought 的内容，参见博客 
-
-[Towards Complex Reasoning: the Polaris of Large Language Models](https://tinyurl.com/67c2eazt)
+更多关于 reasoning/ chain-of-thought 的内容，参见博客 [Towards Complex Reasoning: the Polaris of Large Language Models](https://tinyurl.com/67c2eazt)
 
 # 4. Decoding 的方法
 
@@ -160,15 +159,30 @@ Again，推荐使用 in-context answer-only 作为起点
 * 大模型一般不用 beam search，贵且作用不大
 * 上线一般用 sampling，因为用户友好，说错了可以再说一遍
 
-# 5. 是否需要做 prompt engineering 
+# 5. 以 few-shot 为准还是以 zero-shot 为准？
 
-对于 pretrained checkpoint (没有经过 instruction tuning) prompt 的不同会得到很不同的效果
+* 一般来说，few-shot 的效果总是会比 zero-shot 好一些
+* Few-shot 是面向开发者的，因为在构造基于 LLM 的应用的时候，开发者总是希望用 prompt engineering 的方法进一步提升模型的效果
+  * 在这种情况下，模型相当于一个操作系统
+* Zero-shot 是面向用户的，因为用户没工夫写 prompt 
+  * 在这种情况下，模型相当于一个 Chatbot
+* 我们建议开发两个版本，一个面向开发者，把 in-context learning 的能力拉满，另一个面向用户，把 zero-shot 的能力拉满
 
-对于 instruction-tuned checkpoint，prompt 的差异导致模型效果的 variance 会减小，但是也无法忽略
+# 6. 是否需要做 prompt engineering 
+
+对于 pretrained checkpoint (没有经过 instruction tuning) 
+* prompt 的不同会得到很不同的效果
+* 我们给定了 default prompt，这个 prompt 不一定是最优的
+* 在实际操作的过程中，需要区分分数的提高是来自于模型的提升还是来自于 prompt 的提升
+* 如果目标是开发模型，则推荐不要做太多的 prompt 优化
+
+对于 instruction-tuned checkpoint
+* prompt 的差异导致模型效果的 variance 会减小，但是也无法忽略
+* 经过了 instruction tuning 之后，模型对 prompt engineering 的需求会减小，但是仍然存在
 
 所以推荐报两份结果，一份是使用我们 dev 文件夹里的数据作为 default prompt 报一次结果，此结果看作 baseline；另一份是根据自己的模型做 prompt engineering 然后报一次结果，此结果看作 upper bound 
 
-# 6. 理解 [推理] 和 [知识]
+# 7. 理解 [推理] 和 [知识]
 
 大模型测测试题目一般分推理和知识两种类型：
 * 有些题目天生不需要 reasoning，比如中国语言文学里面一个是 “《茶馆》的作者是谁”，这种不需要 CoT，直接 AO 即可，CoT 反而增加了 distractor 
@@ -188,7 +202,7 @@ Again，推荐使用 in-context answer-only 作为起点
 关于英文推理能力的 benchmark，参见 [chain-of-thought-hub](https://github.com/FranxYao/chain-of-thought-hub)
 
 
-# 7. 解读模型的分数
+# 8. 解读模型的分数
 
 * 四选一，所以 baseline 是 25 分
 * 但是模型没训练好的话可能低于 25 分
