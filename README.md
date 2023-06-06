@@ -96,7 +96,7 @@ Since we do not publicly release the labels for our test split, we provide the 5
 #### Download
 - Method 1: Download the zip file (you can also simply open the following link with the browser):
   ```
-  wget https://huggingface.co/datasets/ceval/ceval-exam/blob/main/ceval-exam.zip
+  wget https://huggingface.co/datasets/ceval/ceval-exam/resolve/main/ceval-exam.zip
   ```
   then unzip it and you may load the data with pandas:
   ```python
