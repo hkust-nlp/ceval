@@ -1,7 +1,7 @@
 <p align="center"> <img src="resources/title.png" style="width: 85%;" id="title-icon">       </p>
 
 <p align="center">
-   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#数据" target="_blank">数据</a> • 📃 <a href="https://arxiv.org/abs/2305.08322"" target="_blank">论文</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English|<a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">中文</a>
+   🌐 <a href="https://cevalbenchmark.com/" target="_blank">网站</a> • 🤗 <a href="https://huggingface.co/datasets/ceval/ceval-exam" target="_blank">Hugging Face</a> • ⏬ <a href="#数据" target="_blank">数据</a> • 📃 <a href="https://arxiv.org/abs/2305.08322"" target="_blank">论文</a> 📖 <a href="resources/tutorial.md" target="_blank">教程</a> <br> <a href="https://github.com/SJTU-LIT/ceval/blob/main/README.md">English | <a href="https://github.com/SJTU-LIT/ceval/blob/main/README_zh.md">中文</a>
 </p>
 
 
@@ -18,11 +18,16 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
 
 ## 目录
 
+- [目录](#目录)
 - [排行榜](#排行榜)
 - [C-Eval Hard 排行榜](#c-eval-hard-排行榜)
 - [验证集结果](#验证集结果)
 - [数据](#数据)
-- [如何在C-Eval上测试](#如何在C-Eval上测试)
+    - [下载](#下载)
+    - [说明](#说明)
+- [如何在C-Eval上测试](#如何在c-eval上测试)
+    - [仅预测答案的prompt](#仅预测答案的prompt)
+    - [思维链prompt](#思维链prompt)
 - [如何提交](#如何提交)
 - [TODO](#todo)
 - [Licenses](#licenses)
