@@ -14,7 +14,7 @@
 ## 基础知识
 
 一般有四种 prompting 范式，见 [Fu et. al. 2023](https://arxiv.org/abs/2301.12726) Figure 1B
-<p align="center"> <img src="prompt_format.png" style="width: 85%;" id="title-icon">       </p>
+<p align="center"> <img src="prompt_format.png" style="width: 60%;" id="title-icon">       </p>
 * few-shot answer-only <- 推荐从这里开始
 * few-shot chain-of-thought <- 一般 CoT 在模型超过 65B 之后才会显著有效
 * zero-shot answer-only <- instruction tuning 之后用这个
