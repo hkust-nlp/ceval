@@ -21,52 +21,64 @@
 
 * Usage examples:
 
-  * Evaluate gpt-3.5-turbo in answer-only setting on computer networks
+  * Evaluate gpt-3.5-turbo in five-shot answer-only setting on operating_system
 
     ```bash
-    python code/evaluator_series/eval.py --openai_key OPENAI_KEY --model_name gpt-3.5-turbo --few_shot -s operating_system
+    python code/evaluator_series/eval.py --openai_key OPENAI_KEY --model_name gpt-3.5-turbo --few_shot -s "operating_system"
     ```
 
-  * Evaluate gpt-3.5-turbo in chain-of-thought setting on computer networks
+  * Evaluate gpt-3.5-turbo in zero-shot answer-only setting on operating_system
 
     ```bash
-    python code/evaluator_series/eval.py --openai_key OPENAI_KEY --model_name gpt-3.5-turbo --few_shot -s operating_system --cot
+    python code/evaluator_series/eval.py --openai_key OPENAI_KEY --model_name gpt-3.5-turbo -s "operating_system"
     ```
 
-  * Evaluate MOSS in answer-only setting on computer architecture
+  * Evaluate gpt-3.5-turbo in five-shot chain-of-thought setting on computer networks
+
+    ```bash
+    python code/evaluator_series/eval.py --openai_key OPENAI_KEY --model_name gpt-3.5-turbo --few_shot -s "operating_system" --cot
+    ```
+
+  * Evaluate MOSS in five-shot answer-only setting on computer architecture
 
     ```bash
     python code/evaluator_series/eval.py --model_name moss --few_shot --ntrain 5 -s "computer_architecture" 
     ```
 
-  * Evaluate MOSS in chain-of-thought setting on computer architecture
+  * Evaluate MOSS in zero-shot answer-only setting on computer architecture
 
+    ```bash
+    python code/evaluator_series/eval.py --model_name moss --ntrain 5 -s "computer_architecture" 
+    ```
+  
+  * Evaluate MOSS in five-shot chain-of-thought setting on computer architecture
+  
     ```bash
     python code/evaluator_series/eval.py --model_name moss --few_shot --ntrain 5 -s "computer_architecture" --cot
     ```
-
+  
   * Evaluate ChatGLM in answer-only setting on computer architecture
-
+  
     ```bash
     python code/evaluator_series/eval.py --model_name chatglm --few_shot --ntrain 5 -s "computer_architecture" --cuda_device CUDA_INDEX
     ```
     It may take some time to download the model when running for the first time.
-
+  
   * Evaluate ChatGLM in chain-of-thought setting on computer architecture
-
+  
     ```bash
     python code/evaluator_series/eval.py --model_name chatglm --few_shot --ntrain 5 -s "computer_architecture" --cuda_device CUDA_INDEX --cot
     ```
-
+  
   * Evaluate Minimax in answer-only setting on computer architecture
-
+  
     ```bash
     python code/evaluator_series/eval.py --model_name minimax --minimax_group_id MINIMAX_GROUP_ID --minimax_key MINIMAX_KEY --few_shot --ntrain 5 -s "computer_architecture"
     ```
     It may take some time to download the model when running for the first time.
-
+  
   * Evaluate Minimax in chain-of-thought setting on computer architecture
-
+  
     ```bash
     python code/evaluator_series/eval.py --model_name minimax --minimax_group_id MINIMAX_GROUP_ID --minimax_key MINIMAX_KEY --few_shot --ntrain 5 -s "computer_architecture" --cot
     ```

@@ -71,7 +71,7 @@ class Moss_Evaluator(Evaluator):
         if few_shot:
             few_shot_prompt=self.generate_few_shot_prompt(subject_name,dev_df,cot=cot)
         else:
-            few_shot_prompt=[]
+            few_shot_prompt=f"你是一个中文人工智能助手，以下是中国关于{subject_name}考试的单项选择题，请选出其中的正确答案。\n"
         answers=list(test_df['answer'])
         message_list=[]
         tar_list=[]
@@ -110,11 +110,20 @@ class Moss_Evaluator(Evaluator):
                             else:
                                 correct=0
                     else:
-                        if self.exact_match(response_str,tar_list[i]):
-                            correct_num+=1
-                            correct=1
+                        response_str=response_str.strip()
+                        if few_shot:
+                            if self.exact_match(response_str,tar_list[i]):
+                                correct_num+=1
+                                correct=1
+                            else:
+                                correct=0
                         else:
-                            correct=0
+                            if response_str[0]==tar_list[i]:
+                                correct_num+=1
+                                correct=1
+                            else:
+                                correct=0
+
                     if save_result_dir:
                         result.append(response_str)
                         score.append(correct)
@@ -126,5 +135,5 @@ class Moss_Evaluator(Evaluator):
         if save_result_dir:
             test_df['model_output']=result
             test_df["correctness"]=score
-            test_df.to_csv(os.path.join(save_result_dir,f'{subject_name}_test.csv'),encoding="utf-8",index=False)
+            test_df.to_csv(os.path.join(save_result_dir,f'{subject_name}_val.csv'),encoding="utf-8",index=False)
         return correct_ratio
