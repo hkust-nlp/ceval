@@ -26,6 +26,8 @@ We hope C-Eval could help developers track the progress and analyze the importan
 - [Licenses](#licenses)
 - [Citation](#citation)
 
+
+
 ## Leaderboard
 
 Below are zero-shot and five-shot accuracies from the models that we evaluate in the initial release, please visit our official [Leaderboard](https://cevalbenchmark.com/static/leaderboard.html) for up-to-date models and their detailed results on each subject. We note that zero-shot performance is better than five-shot for many instruction-tuned models.
@@ -61,23 +63,24 @@ Below are zero-shot and five-shot accuracies from the models that we evaluate in
 | Chinese Alpaca-13B  | 26.0 |      27.2      |    27.8    | 26.4  |  26.7   |
 
 
+
 ## C-Eval Hard Leaderboard
 
-We select 8 challenging math, physics, and chemistry subjects from C-Eval to form a separate benchmark, C-Eval Hard, which includes advanced mathematics, discrete mathematics, probability and statistics, college chemistry, college physics, high school mathematics, high school chemistry, and high school physics. These subjects often involve with complex LaTeX equations and require non-trivial reasoning abilities to solve. 5-shot accuracies are shown below.
+We select 8 challenging math, physics, and chemistry subjects from C-Eval to form a separate benchmark, C-Eval Hard, which includes advanced mathematics, discrete mathematics, probability and statistics, college chemistry, college physics, high school mathematics, high school chemistry, and high school physics. These subjects often involve with complex LaTeX equations and require non-trivial reasoning abilities to solve. Zero-shot and five-shot accuracies are shown below.
 
-| Model               | Accuracy |
-| ------------------- | :------: |
-| GPT-4               |   54.9   |
-| ChatGPT             |   41.4   |
-| Claude-v1.3         |   39.0   |
-| Claude-instant-v1.0 |   35.5   |
-| LLaMA-65B           |   31.7   |
-| Bloomz-mt           |   30.4   |
-| GLM-130B            |   30.3   |
-| Chinese LLaMA-13B   |   27.3   |
-| Chinese Alpaca-13B  |   27.1   |
-| MOSS                |   24.0   |
-| ChatGLM-6B          |   23.1   |
+| Model               | Zero-shot | Five-shot |
+| ------------------- | :-------: | :-------: |
+| GPT-4               |   53.3    |   54.9    |
+| Claude-v1.3         |   37.6    |   39.0    |
+| ChatGPT             |   36.7    |   41.4    |
+| Claude-instant-v1.0 |   32.1    |   35.5    |
+| Bloomz-mt           |   30.8    |   30.4    |
+| GLM-130B            |   30.7    |   30.3    |
+| LLaMA-65B           |   29.8    |   31.7    |
+| ChatGLM-6B          |   29.2    |   23.1    |
+| MOSS                |   28.4    |   24.0    |
+| Chinese-LLaMA-13B   |   27.5    |   27.3    |
+| Chinese-Alpaca-13B  |   24.4    |   27.1    |
 
 
 
@@ -104,6 +107,7 @@ Since we do not publicly release the labels for our test split, we provide the z
 ## Data
 
 #### Download
+
 - Method 1: Download the zip file (you can also simply open the following link with the browser):
   ```
   wget https://huggingface.co/datasets/ceval/ceval-exam/resolve/main/ceval-exam.zip
@@ -117,7 +121,7 @@ Since we do not publicly release the labels for our test split, we provide the z
   test_df=pd.read_csv(os.path.join(File_Dir,"test","computer_network_test.csv"))
   ```
 
-- Method 2: Directly load the dataset using [huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam):
+- Method 2: Directly load the dataset using [Hugging Face datasets](https://huggingface.co/datasets/ceval/ceval-exam):
 
   ```python
   from datasets import load_dataset
@@ -164,7 +168,10 @@ explantion:
 2. 设强酸和强碱溶液的体积分别为x和y，则：c(OH-)=(0.1y-0.01x)/(x+y)=0.001，解得x:y=9:1。
   ```
 
+
+
 ## How to Evaluate on C-Eval
+
 Normally you can directly take the model's generations and extract the answer token (i.e. A,B,C,D) from it with simple regular expressions. In few-shot evaluation, the model usually follows the given template thus this is easy. Sometimes, however, especially in zero-shot evaluation for models without experiencing instruction tuning, the model may not follow the instruction well to give a well-formatted generation, in this case we recommend computing the probability of "A", "B", "C", "D" and take the most likely one as the answer -- this is a constrained decoding approach and was used in the official [MMLU test code](https://github.com/hendrycks/test/blob/4450500f923c49f1fb1dd3d99108a0bd9717b660/evaluate.py#L88). Such a probability approach is not applicable for chain-of-thought settings. [More detailed evaluation tutorial (in Chinese)](resources/tutorial.md). 
 
 We use the following prompt when evaluating the models in our first release:
@@ -216,6 +223,7 @@ D. {选项D}
 ```
 
 
+
 ## How to Submit
 
 You need to first prepare a UTF-8 encoded JSON file with the following format, please refer to [submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json) for details.
@@ -240,9 +248,14 @@ You need to first prepare a UTF-8 encoded JSON file with the following format, p
   ```
   Then you can submit the prepared json file [here](https://cevalbenchmark.com/static/user_interface.html), **note that you need to first log in to access the submission page**.
 
+
+
 ## TODO
+
 - [x] add zero-shot results
 - [ ] incorporate into openai eval
+
+
 
 ## Licenses
 

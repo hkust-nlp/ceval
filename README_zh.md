@@ -68,21 +68,21 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
 
 ## C-Eval Hard 排行榜
 
-我们选取了C-Eval中具有挑战性的数学、物理和化学科目组成C-Eval Hard，包括：高等数学、离散数学、概率统计、大学化学、大学物理、高中数学、高中物理、高中化学八个科目。这些科目包含了复杂的LaTex公式，需要非凡的推理能力才能解决。以下是5-shot准确率。
+我们选取了C-Eval中具有挑战性的数学、物理和化学科目组成C-Eval Hard，包括：高等数学、离散数学、概率统计、大学化学、大学物理、高中数学、高中物理、高中化学八个科目。这些科目包含了复杂的LaTex公式，需要非凡的推理能力才能解决。以下是0-shot和5-shot的准确率。
 
-| Model               | Accuracy |
-| ------------------- | :------: |
-| GPT-4               |   54.9   |
-| ChatGPT             |   41.4   |
-| Claude-v1.3         |   39.0   |
-| Claude-instant-v1.0 |   35.5   |
-| LLaMA-65B           |   31.7   |
-| Bloomz-mt           |   30.4   |
-| GLM-130B            |   30.3   |
-| Chinese LLaMA-13B   |   27.3   |
-| Chinese Alpaca-13B  |   27.1   |
-| MOSS                |   24.0   |
-| ChatGLM-6B          |   23.1   |
+| Model               | Zero-shot | Five-shot |
+| ------------------- | :-------: | :-------: |
+| GPT-4               |   53.3    |   54.9    |
+| Claude-v1.3         |   37.6    |   39.0    |
+| ChatGPT             |   36.7    |   41.4    |
+| Claude-instant-v1.0 |   32.1    |   35.5    |
+| Bloomz-mt           |   30.8    |   30.4    |
+| GLM-130B            |   30.7    |   30.3    |
+| LLaMA-65B           |   29.8    |   31.7    |
+| ChatGLM-6B          |   29.2    |   23.1    |
+| MOSS                |   28.4    |   24.0    |
+| Chinese-LLaMA-13B   |   27.5    |   27.3    |
+| Chinese-Alpaca-13B  |   24.4    |   27.1    |
 
 
 
@@ -105,6 +105,7 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
 | Chinese-LLaMA-13B   |   29.4    |   33.1    |
 
 
+
 ## 数据
 
 #### 下载
@@ -123,7 +124,7 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
   test_df=pd.read_csv(os.path.join(File_Dir,"test","computer_network_test.csv"))
   ```
 
-* 方法二：使用[huggingface datasets](https://huggingface.co/datasets/ceval/ceval-exam)直接加载数据集。示例如下：
+* 方法二：使用[Hugging Face datasets](https://huggingface.co/datasets/ceval/ceval-exam)直接加载数据集。示例如下：
 
   ```python
   from datasets import load_dataset
@@ -169,7 +170,10 @@ explantion:
 2. 设强酸和强碱溶液的体积分别为x和y，则：c(OH-)=(0.1y-0.01x)/(x+y)=0.001，解得x:y=9:1。
 ```
 
+
+
 ## 如何在C-Eval上测试
+
 通常你可以直接从模型的生成中使用正则表达式提取出答案选项（A,B,C,D)。在少样本测试中，模型通常会遵循少样本给出的固定格式，所以提取答案很简单。然而有时候，特别是零样本测试和面对没有做过指令微调的模型时，模型可能无法很好的理解指令，甚至有时不会回答问题。这种情况下我们推荐直接计算下一个预测token等于"A", "B", "C", "D"的概率，然后以概率最大的选项作为答案 -- 这是一种受限解码生成的方法，MMLU的[官方测试代码](https://github.com/hendrycks/test/blob/4450500f923c49f1fb1dd3d99108a0bd9717b660/evaluate.py#L88)中是使用了这种方法进行测试。注意这种概率方法对思维链的测试不适用。[更加详细的评测教程](resources/tutorial.md)。
 
 在我们最初发布时，我们自己用了以下prompt进行测试：
@@ -221,6 +225,7 @@ D. {选项D}
 ```
 
 
+
 ## 如何提交
 
 您首先需要准备一个 UTF-8 编码的 JSON 文件，并按照以下格式编写。详情请参考[submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json)。
@@ -246,9 +251,13 @@ D. {选项D}
 
 然后你可以将准备好的JSON文件提交到[这里](https://cevalbenchmark.com/static/user_interface_zh.html)，**请注意，你需要先登录才能访问提交页面**。
 
+
+
 ## TODO
+
 - [x] 添加zero-shot结果
 - [ ] 集成到openai eval
+
 
 
 ## Licenses
