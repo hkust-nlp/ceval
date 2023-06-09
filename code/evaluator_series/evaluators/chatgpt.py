@@ -59,11 +59,18 @@ class ChatGPT_Evaluator(Evaluator):
         if few_shot:
             few_shot_prompt = self.generate_few_shot_prompt(subject_name, dev_df,cot=cot)
         else:
-            few_shot_prompt = []
+            few_shot_prompt=[
+                {
+                    "role":"system",
+                    "content":f"你是一个中文人工智能助手，以下是中国关于{subject_name}考试的单项选择题，请选出其中的正确答案。"
+                }
+            ]
         answers = list(test_df['answer'])
         for row_index, row in tqdm(test_df.iterrows(),total=len(test_df)):
             question = self.format_example(row, include_answer=False)
             full_prompt = few_shot_prompt + question
+            if not few_shot:
+                full_prompt[-1]["content"]=f"以下是中国关于{subject_name}考试的单项选择题，请选出其中的正确答案。\n\n"+full_prompt[-1]["content"]
             response=None
             timeout_counter=0
             while response is None and timeout_counter<=30:
@@ -100,19 +107,63 @@ class ChatGPT_Evaluator(Evaluator):
                     else:
                         correct=0
             else:
-                if self.exact_match(response_str,row["answer"]):
-                    correct_num+=1
-                    correct=1
+                response_str=response_str.strip()
+                if few_shot:
+                    if len(response_str)>0:
+                        if self.exact_match(response_str,row["answer"]):
+                            correct_num+=1
+                            correct=1
+                        else:
+                            correct=0
+                    else:
+                        correct=0
                 else:
-                    correct=0
+                    if len(response_str)>0:
+                        ans_list=self.extract_ans(response_str)
+                        if len(ans_list)>0 and (ans_list[-1]==row["answer"]):
+                            correct_num+=1
+                            correct=1
+                        else:
+                            correct=0
+                    else:
+                        correct=0
             if save_result_dir:
                 result.append(response_str)
                 score.append(correct)
         correct_ratio = 100*correct_num/len(answers)
-        
+
         if save_result_dir:
             test_df['model_output']=result
             test_df["correctness"]=score
-            test_df.to_csv(os.path.join(save_result_dir, f'{subject_name}_test.csv'),encoding="utf-8",index=False)
+            test_df.to_csv(os.path.join(save_result_dir, f'{subject_name}_val.csv'),encoding="utf-8",index=False)
         return correct_ratio
-        
+
+    def extract_ans(self,response_str):
+        pattern=[
+            r"^选([A-D])",
+            r"^选项([A-D])",
+            r"答案是\s?选?项?\s?([A-D])",
+            r"答案为\s?选?项?\s?([A-D])",
+            r"答案应为\s?选?项?\s?([A-D])",
+            r"答案选\s?选?项?\s?([A-D])",
+            r"答案是:\s?选?项?\s?([A-D])",
+            r"答案应该是:\s?选?项?\s?([A-D])",
+            r"正确的一项是\s?([A-D])",
+            r"答案为:\s?选?项?\s?([A-D])",
+            r"答案应为:\s?选?项?\s?([A-D])",
+            r"答案:\s?选?项?\s?([A-D])",
+            r"答案是：\s?选?项?\s?([A-D])",
+            r"答案应该是：\s?选?项?\s?([A-D])",
+            r"答案为：\s?选?项?\s?([A-D])",
+            r"答案应为：\s?选?项?\s?([A-D])",
+            r"答案：\s?选?项?\s?([A-D])",
+        ]
+        ans_list=[]
+        if response_str[0] in ["A",'B','C','D']:
+            ans_list.append(response_str[0])
+        for p in pattern:
+            if len(ans_list)==0:
+                ans_list=re.findall(p,response_str)
+            else:
+                break
+        return ans_list
