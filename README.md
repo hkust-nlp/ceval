@@ -71,23 +71,43 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 
 
 
+## Zero-shot Results
+
+We provide the zero-shot accuracies from the models that we evaluate in the initial release as a reference for developers.
+
+| Model               | STEM | Social Science | Humanities | Other | Average |
+| ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
+| GPT-4               | 65.2 |      74.7      |    62.5    | 64.7  |  66.4   |
+| ChatGPT             | 49.0 |      58.0      |    48.8    | 50.4  |  51.0   |
+| Claude-v1.3         | 48.5 |      58.6      |    47.3    | 50.1  |  50.5   |
+| Bloomz-mt           | 39.1 |      53.0      |    47.7    | 42.7  |  44.3   |
+| GLM-130B            | 36.7 |      55.8      |    47.7    | 43.0  |  44.0   |
+| Claude-instant-v1.0 | 38.6 |      47.6      |    39.5    | 39.0  |  40.6   |
+| ChatGLM-6B          | 33.3 |      48.3      |    41.3    | 38.0  |  38.9   |
+| LLaMA-65B           | 32.6 |      41.2      |    34.1    | 33.0  |  34.7   |
+| MOSS                | 31.6 |      37.0      |    33.4    | 32.1  |  33.1   |
+| Chinese-Alpaca-13B  | 27.4 |      39.2      |    32.5    | 28.0  |  30.9   |
+| Chinese-LLaMA-13B   | 28.8 |      32.9      |    29.7    | 28.0  |  29.6   |
+
+
+
 ## Results On Validation Split
 
-Since we do not publicly release the labels for our test split, we provide the 5-shot average accuracy on the validation split as a reference for developers. The validation split comprises a total of 1346 questions. We report the average answer-only accuracy across all subjects in table below. The average validation accuracy closely mirrors the average test accuracy as presented in [Leaderboard](#leaderboard).
+Since we do not publicly release the labels for our test split, we provide the zero-shot and five-shot average accuracy on the validation split as a reference for developers. The validation split comprises a total of 1346 questions. We report the average answer-only accuracy across all subjects in table below. The average validation accuracy closely mirrors the average test accuracy as presented in [Leaderboard](#leaderboard).
 
-| Model               | Average |
-| ------------------- | :-----: |
-| GPT-4               |  69.9   |
-| Claude-v1.3         |  55.5   |
-| ChatGPT             |  53.5   |
-| Claude-instant-v1.0 |  47.4   |
-| GLM-130B            |  40.8   |
-| LLaMA-65B           |  39.8   |
-| Bloomz-mt           |  38.0   |
-| ChatGLM-6B          |  37.1   |
-| Chinese-LLaMA-13B   |  33.1   |
-| MOSS                |  28.9   |
-| Chinese-Alpaca-13B  |  27.2   |
+| Model               | Zero-shot | Five-shot |
+| ------------------- | :-------: | :-------: |
+| GPT-4               |   66.7    |   69.9    |
+| Claude-v1.3         |   52.1    |   55.5    |
+| ChatGPT             |   50.8    |   53.5    |
+| Bloomz-mt           |   45.9    |   38.0    |
+| GLM-130B            |   44.2    |   40.8    |
+| Claude-instant-v1.0 |   43.2    |   47.4    |
+| ChatGLM-6B          |   39.7    |   37.1    |
+| LLaMA-65B           |   38.6    |   39.8    |
+| MOSS                |   35.1    |   28.9    |
+| Chinese-Alpaca-13B  |   32.0    |   27.2    |
+| Chinese-LLaMA-13B   |   29.4    |   33.1    |
 
 
 
@@ -112,7 +132,7 @@ Since we do not publicly release the labels for our test split, we provide the 5
   ```python
   from datasets import load_dataset
   dataset=load_dataset(r"ceval/ceval-exam",name="computer_network")
-
+  
   print(dataset['val'][0])
   # {'id': 0, 'question': '使用位填充方法，以01111110为位首flag，数据为011011111111111111110010，求问传送时要添加几个0____', 'A': '1', 'B': '2', 'C': '3', 'D': '4', 'answer': 'C', 'explanation': ''}
   ```
