@@ -38,68 +38,69 @@ prompt 的格式非常重要！！注意要换行！！注意每行末尾不要�
 以下是中国关于{subject}考试的单项选择题，请选出其中的正确答案。 <- 注意把 {subject} 改成具体的科目名称
 
 [题目 1]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
-让我们一步一步思考
-[explanation]
-答案：A
-
-...      <- 题目 2 到 4
-
-[题目 5]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
-让我们一步一步思考
-[explanation]
-答案：C
-
-[测试题目]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
-让我们一步一步思考
-<模型从此处生成>
-```
-
-* 上面是 in-context chain-of-thought 格式的 prompt。如果是 zero-shot 的话，则去掉 [题目 1] 到 [题目 5] 的 in-context 样本
-* 如果模型的 context length 装不下所有的 in-context example，则去掉一两个
-* 如果是 answer-only 的话，则去掉 {让我们一步一步思考 [explanation]} 的内容
-
-以下是 few-shot answer-only prompt 的格式
- 
-```
-以下是中国关于{subject}考试的单项选择题，请选出其中的正确答案。 <- 注意把 {subject} 改成具体的科目名称
-
-[题目 1]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
-答案：A              <- 注意这里删掉了中间过程，直接给答案
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
+答案：A              
 
 ...                 <- 题目 2 到 4
 
 [题目 5]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
 答案：C
 
 [测试题目]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
 答案：<模型从此处生成>
 ```
 
-这里和 CoT 的区别就是去掉了 {让我们一步一步思考 + CoT} 的内容
+* 上面是 in-context answer-only 格式的 prompt。如果是 zero-shot 的话，则去掉 [题目 1] 到 [题目 5] 的 in-context 样本
+* 如果模型的 context length 装不下所有的 in-context examples，则去掉一两个
+* 如果是 chain-of-thought 的话，则需要加上 {让我们一步一步思考 [explanation]} 的内容，如下：
+
+以下是 few-shot chain-of-thought prompt 的格式
+
+```
+以下是中国关于{subject}考试的单项选择题，请选出其中的正确答案。 <- 注意把 {subject} 改成具体的科目名称
+
+[题目 1]
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
+答案：让我们一步一步思考，
+1. {解析过程步骤1}
+2. {解析过程步骤2}
+3. {解析过程步骤3}
+所以答案是A。
+
+...      <- 题目 2 到 4
+
+[题目 5]
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
+答案：让我们一步一步思考，
+1. {解析过程步骤1}
+2. {解析过程步骤2}
+所以答案是C。
+
+[测试题目]
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
+答案：让我们一步一步思考，
+<模型从此处生成>
+```
 
 ## 3.2. Chat 模式
 
@@ -110,45 +111,43 @@ System:
 
 User:
 [题目 1]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
-让我们一步一步思考
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
+答案：
 
-Assistent:
-[explanation]       <- 注意这个地方不是模型生成的，而是我们 hard code 作为输入的
-答案：A 
+Assistant:
+A       <- 注意这个地方不是模型生成的，而是我们 hard code 作为输入的
+
 
 ...                 <- 题目 2 到 4
 
 User:
 [题目 5]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
-让我们一步一步思考
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
+答案：
 
-Assistent:
-[explanation]        <- Again，这个地方不是模型生成的，而是我们 hard code 作为输入的
-答案：C
+Assistant:
+C       <- Again，这个地方不是模型生成的，而是我们 hard code 作为输入的
 
 User:
 [测试题目]
-A: [选项 A 具体内容]
-B: [选项 B 具体内容]
-C: [选项 C 具体内容]
-D: [选项 D 具体内容]
-让我们一步一步思考
-
-Assistent:
-[explanation]        <- 模型从此处生成
+A. [选项 A 具体内容]
+B. [选项 B 具体内容]
+C. [选项 C 具体内容]
+D. [选项 D 具体内容]
 答案：
+
+Assistant:
+<模型从此处生成>
 ```
 
 * 对话格式的 prompt 相当于我们让 AI 假装已经正确回答了五个问题（但实际上是被我们 hard code 到 prompt 里的），然后 AI 实际上只回答最后一轮的问题
-* 相应的，对话格式的 zero-shot 和 answer-only 版本的 prompt 需要分别去掉 in-context 样本和 {让我们一步一步思考 [explanation]} 的内容
+* 相应的，对话格式的 zero-shot 和 chain-of-thought 版本的 prompt 需要分别去掉 in-context 样本和加上{让我们一步一步思考 [explanation]} 的内容
 * Again，推荐使用 in-context answer-only 作为起点
 
 更多关于 reasoning/ chain-of-thought 的内容，参见博客 [Towards Complex Reasoning: the Polaris of Large Language Models](https://tinyurl.com/67c2eazt)
@@ -161,7 +160,7 @@ Assistent:
 
 # 5. 以 few-shot 为准还是以 zero-shot 为准？
 
-* 一般来说，few-shot 的效果总是会比 zero-shot 好一些
+* 一般来说，pretraining阶段的模型few-shot 的效果总是会比 zero-shot 好一些，但是经过instruction tuning之后的模型，且instruction tuning没有few-shot data的话，很可能zero-shot会更好
 * Few-shot 是面向开发者的，因为在构造基于 LLM 的应用的时候，开发者总是希望用 prompt engineering 的方法进一步提升模型的效果
   * 在这种情况下，模型相当于一个操作系统
 * Zero-shot 是面向用户的，因为用户没工夫写 prompt 

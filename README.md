@@ -16,16 +16,11 @@ We hope C-Eval could help developers track the progress and analyze the importan
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Leaderboard](#leaderboard)
 - [C-Eval Hard Leaderboard](#c-eval-hard-leaderboard)
 - [Results On Validation Split](#results-on-validation-split)
 - [Data](#data)
-    - [Download](#download)
-    - [Notes](#notes)
 - [How to Evaluate on C-Eval](#how-to-evaluate-on-c-eval)
-    - [answer-only prompt](#answer-only-prompt)
-    - [chain-of-thought prompt](#chain-of-thought-prompt)
 - [How to Submit](#how-to-submit)
 - [TODO](#todo)
 - [Licenses](#licenses)
@@ -33,8 +28,24 @@ We hope C-Eval could help developers track the progress and analyze the importan
 
 ## Leaderboard
 
-Below are 5-shot accuracies from the models that we evaluate in the initial release, please visit our official [Leaderboard](https://cevalbenchmark.com/static/leaderboard.html) for up-to-date models and their detailed results on each subject.
+Below are zero-shot and five-shot accuracies from the models that we evaluate in the initial release, please visit our official [Leaderboard](https://cevalbenchmark.com/static/leaderboard.html) for up-to-date models and their detailed results on each subject. We note that zero-shot performance is better than five-shot for many instruction-tuned models.
 
+#### Zero-shot
+| Model               | STEM | Social Science | Humanities | Other | Average |
+| ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
+| GPT-4               | 65.2 |      74.7      |    62.5    | 64.7  |  66.4   |
+| ChatGPT             | 49.0 |      58.0      |    48.8    | 50.4  |  51.0   |
+| Claude-v1.3         | 48.5 |      58.6      |    47.3    | 50.1  |  50.5   |
+| Bloomz-mt-176B           | 39.1 |      53.0      |    47.7    | 42.7  |  44.3   |
+| GLM-130B            | 36.7 |      55.8      |    47.7    | 43.0  |  44.0   |
+| Claude-instant-v1.0 | 38.6 |      47.6      |    39.5    | 39.0  |  40.6   |
+| ChatGLM-6B          | 33.3 |      48.3      |    41.3    | 38.0  |  38.9   |
+| LLaMA-65B           | 32.6 |      41.2      |    34.1    | 33.0  |  34.7   |
+| MOSS                | 31.6 |      37.0      |    33.4    | 32.1  |  33.1   |
+| Chinese-Alpaca-13B  | 27.4 |      39.2      |    32.5    | 28.0  |  30.9   |
+| Chinese-LLaMA-13B   | 28.8 |      32.9      |    29.7    | 28.0  |  29.6   |
+
+#### Five-shot
 | Model               | STEM | Social Science | Humanities | Other | Average |
 | ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
 | GPT-4               | 67.1 |      77.6      |    64.5    | 67.8  |  68.7   |
@@ -42,13 +53,12 @@ Below are 5-shot accuracies from the models that we evaluate in the initial rele
 | Claude-v1.3         | 51.9 |      61.7      |    52.1    | 53.7  |  54.2   |
 | Claude-instant-v1.0 | 43.1 |      53.8      |    44.2    | 45.4  |  45.9   |
 | GLM-130B            | 34.8 |      48.7      |    43.3    | 39.8  |  40.3   |
-| Bloomz-mt           | 35.3 |      45.1      |    40.5    | 38.5  |  39.0   |
+| Bloomz-mt-176B      | 35.3 |      45.1      |    40.5    | 38.5  |  39.0   |
 | LLaMA-65B           | 37.8 |      45.6      |    36.1    | 37.1  |  38.8   |
 | ChatGLM-6B          | 30.4 |      39.6      |    37.4    | 34.5  |  34.5   |
 | Chinese LLaMA-13B   | 31.6 |      37.2      |    33.6    | 32.8  |  33.3   |
 | MOSS                | 28.6 |      36.8      |    31.0    | 30.3  |  31.1   |
 | Chinese Alpaca-13B  | 26.0 |      27.2      |    27.8    | 26.4  |  26.7   |
-
 
 
 ## C-Eval Hard Leaderboard
@@ -68,26 +78,6 @@ We select 8 challenging math, physics, and chemistry subjects from C-Eval to for
 | Chinese Alpaca-13B  |   27.1   |
 | MOSS                |   24.0   |
 | ChatGLM-6B          |   23.1   |
-
-
-
-## Zero-shot Results
-
-We provide the zero-shot accuracies from the models that we evaluate in the initial release as a reference for developers.
-
-| Model               | STEM | Social Science | Humanities | Other | Average |
-| ------------------- | :--: | :------------: | :--------: | :---: | :-----: |
-| GPT-4               | 65.2 |      74.7      |    62.5    | 64.7  |  66.4   |
-| ChatGPT             | 49.0 |      58.0      |    48.8    | 50.4  |  51.0   |
-| Claude-v1.3         | 48.5 |      58.6      |    47.3    | 50.1  |  50.5   |
-| Bloomz-mt           | 39.1 |      53.0      |    47.7    | 42.7  |  44.3   |
-| GLM-130B            | 36.7 |      55.8      |    47.7    | 43.0  |  44.0   |
-| Claude-instant-v1.0 | 38.6 |      47.6      |    39.5    | 39.0  |  40.6   |
-| ChatGLM-6B          | 33.3 |      48.3      |    41.3    | 38.0  |  38.9   |
-| LLaMA-65B           | 32.6 |      41.2      |    34.1    | 33.0  |  34.7   |
-| MOSS                | 31.6 |      37.0      |    33.4    | 32.1  |  33.1   |
-| Chinese-Alpaca-13B  | 27.4 |      39.2      |    32.5    | 28.0  |  30.9   |
-| Chinese-LLaMA-13B   | 28.8 |      32.9      |    29.7    | 28.0  |  29.6   |
 
 
 
@@ -175,7 +165,7 @@ explantion:
   ```
 
 ## How to Evaluate on C-Eval
-Normally you can directly take the model's generations and extract the answer token (i.e. A,B,C,D) from it. In few-shot evaluation, the model usually follows the given template thus this is easy. Sometimes, however, especially in zero-shot evaluation for models without experiencing instruction tuning, the model may not follow the instruction well to give a well-formatted generation, in this case we recommend computing the probability of "A", "B", "C", "D" and take the most likely one as the answer -- this is a constrained decoding approach and was used in the official [MMLU test code](https://github.com/hendrycks/test/blob/4450500f923c49f1fb1dd3d99108a0bd9717b660/evaluate.py#L88). Such a probability approach is not applicable for chain-of-thought settings.
+Normally you can directly take the model's generations and extract the answer token (i.e. A,B,C,D) from it with simple regular expressions. In few-shot evaluation, the model usually follows the given template thus this is easy. Sometimes, however, especially in zero-shot evaluation for models without experiencing instruction tuning, the model may not follow the instruction well to give a well-formatted generation, in this case we recommend computing the probability of "A", "B", "C", "D" and take the most likely one as the answer -- this is a constrained decoding approach and was used in the official [MMLU test code](https://github.com/hendrycks/test/blob/4450500f923c49f1fb1dd3d99108a0bd9717b660/evaluate.py#L88). Such a probability approach is not applicable for chain-of-thought settings. [More detailed evaluation tutorial (in Chinese)](resources/tutorial.md). 
 
 We use the following prompt when evaluating the models in our first release:
 #### answer-only prompt
@@ -251,7 +241,8 @@ You need to first prepare a UTF-8 encoded JSON file with the following format, p
   Then you can submit the prepared json file [here](https://cevalbenchmark.com/static/user_interface.html), **note that you need to first log in to access the submission page**.
 
 ## TODO
-- [ ] add zero-shot results
+- [x] add zero-shot results
+- [ ] incorporate into openai eval
 
 ## Licenses
 
