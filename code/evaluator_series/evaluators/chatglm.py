@@ -1,21 +1,32 @@
 import os
 import re
 from tqdm import tqdm
+import torch
 from transformers import AutoTokenizer, AutoModel
+from transformers.generation.logits_process import LogitsProcessor
+from transformers.generation.utils import LogitsProcessorList
 from evaluators.evaluator import Evaluator
+
+class InvalidScoreLogitsProcessor(LogitsProcessor):
+    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor) -> torch.FloatTensor:
+        if torch.isnan(scores).any() or torch.isinf(scores).any():
+            scores.zero_()
+            scores[..., 5] = 5e4
+        return scores
 
 class ChatGLM_Evaluator(Evaluator):
     def __init__(self, choices, k, model_name, device):
         super(ChatGLM_Evaluator, self).__init__(choices, model_name, k)
         # try adding 'mirror="tuna"' and 'resume_download=True' if facing the 'read timed out' problem
         # or directly clone the model
-        self.tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True, mirror="tuna")
-        self.model = AutoModel.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True, mirror="tuna", resume_download=True).half().to(device)
+        self.tokenizer = AutoTokenizer.from_pretrained("/data12/private/baiyuzhuo/chatglm/chatglm-6b", trust_remote_code=True, mirror="tuna")
+        self.model = AutoModel.from_pretrained("/data12/private/baiyuzhuo/chatglm/chatglm-6b", trust_remote_code=True, mirror="tuna", resume_download=True).half().to(device)
 
     def eval_subject(self, subject_name, test_df, dev_df=None, few_shot=False, cot=False, save_result_dir=None):
         correct_num = 0
         if save_result_dir:
-            result = []
+            if few_shot:
+                result = []
             score = []
         if few_shot:
             history = self.generate_few_shot_prompt(subject_name, dev_df, cot=cot)
@@ -24,22 +35,27 @@ class ChatGLM_Evaluator(Evaluator):
         answers = list(test_df['answer'])
         for row_index, row in tqdm(test_df.iterrows(), total=len(test_df)):
             question = self.format_example(row, include_answer=False, cot=cot)
-            response, _ = self.model.chat(self.tokenizer, question, do_sample=False, history=history)
-            response = response.strip()
-            # For ChatGLM, we use answer extraction in answer-only mode too.
-            ans, direct_extract = self.extract_cot_answer(row, response)
+            if few_shot:
+                response, _ = self.model.chat(self.tokenizer, question, do_sample=False, history=history)
+                response = response.strip()
+                # For ChatGLM, we use answer extraction in answer-only mode too.
+                ans, direct_extract = self.extract_cot_answer(row, response)
+            else:   # zero-shot by extracting answer from distribution
+                ans = self.generate_dist(self.model, self.tokenizer, question, do_sample=False, max_length=2048, history=history)
             if ans == answers[row_index]:
                 correct_num += 1
                 correct = 1
             else:
                 correct = 0
             if save_result_dir:
-                result.append(response)
+                if few_shot:
+                    result.append(response)
                 score.append(correct)
         correct_ratio = 100*correct_num/len(answers)
         
         if save_result_dir:
-            test_df['model_output'] = result
+            if few_shot:
+                test_df['model_output'] = result
             test_df['correctness'] = score
             test_df.to_csv(os.path.join(save_result_dir, f'{subject_name}_test.csv'))
 
@@ -104,3 +120,28 @@ class ChatGLM_Evaluator(Evaluator):
         if answer_word_counter == 1:
             return answer, False
         return '-', False
+    
+    def generate_dist(self, model, tokenizer, query, history, num_beams=1, max_length=2048,
+                      do_sample=False, top_p=0.7, temperature=0.95, logits_processor=None, **kwargs):
+        if history is None:
+            history = []
+        if logits_processor is None:
+            logits_processor = LogitsProcessorList()
+        logits_processor.append(InvalidScoreLogitsProcessor())
+        gen_kwargs = {"num_beams": num_beams, "do_sample": do_sample, "top_p": top_p, "max_length": 2048,
+                      "temperature": temperature, "logits_processor": logits_processor, **kwargs}
+        if not history:
+            prompt = query
+        else:
+            prompt = ""
+            for i, (old_query, response) in enumerate(history):
+                prompt += "[Round {}]\n问：{}\n答：{}\n".format(i, old_query, response)
+            prompt += "[Round {}]\n问：{}\n答：".format(len(history), query)
+        inputs = tokenizer([prompt], return_tensors="pt")
+        inputs = inputs.to(model.device)
+        outputs = model.generate(**inputs, return_dict_in_generate=True, output_scores=True, **gen_kwargs)
+        
+        score = outputs.scores[0][0].tolist()
+        choice_score = [score[167], score[333], score[251], score[416]]
+        ranked_index = [index for index, value in sorted(list(enumerate(choice_score)), key=lambda x:x[1], reverse=True)]
+        return self.choices[ranked_index[0]]
