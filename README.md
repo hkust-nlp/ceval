@@ -163,7 +163,7 @@ B: 9:1
 C: 1:11
 D: 1:9
 answer: B
-explantion: 
+explanation: 
 1. pH=13的强碱溶液中c(OH-)=0.1mol/L, pH=2的强酸溶液中c(H+)=0.01mol/L，酸碱混合后pH=11，即c(OH-)=0.001mol/L。
 2. 设强酸和强碱溶液的体积分别为x和y，则：c(OH-)=(0.1y-0.01x)/(x+y)=0.001，解得x:y=9:1。
   ```
