@@ -16,7 +16,7 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
 
 ## 更新
 
-* **[2023.07.17]** C-Eval现在已经加入 [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] ! 更多信息请参考 [通过Evaluation Harness使用](#通过Evaluation-Harness使用) 。
+* **[2023.07.17]** C-Eval现在已经加入 [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) ! 更多信息请参考 [通过Evaluation Harness使用](#通过Evaluation-Harness使用) 。
 
 
 

@@ -14,7 +14,7 @@ We hope C-Eval could help developers track the progress and analyze the importan
 
 ## News
 
-* **[2023.07.17]** C-Eval now has been added into [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] ! Please refer to [Use Through Evaluation Harness](#use-through-evaluation-harness) for details.
+* **[2023.07.17]** C-Eval now has been added into [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) ! Please refer to [Use Through Evaluation Harness](#use-through-evaluation-harness) for details.
 
 
 
