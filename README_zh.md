@@ -14,6 +14,10 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
 
 <img src="resources/overview.png" style="zoom: 80%;" >
 
+## 更新
+
+* **[2023.07.17]** C-Eval现在已经加入 [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] ! 更多信息请参考 [通过Evaluation Harness使用](#通过Evaluation-Harness使用) 。
+
 
 
 ## 目录
@@ -178,6 +182,7 @@ explanation:
 
 在我们最初发布时，我们自己用了以下prompt进行测试：
 #### 仅预测答案的prompt
+
 ```
 以下是中国关于{科目}考试的单项选择题，请选出其中的正确答案。
 
@@ -223,6 +228,16 @@ D. {选项D}
 答案：让我们一步一步思考，
 1. 
 ```
+
+#### 通过Evaluation Harness使用
+
+现在，你可以通过[lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] 在C-Eval的验证集上评估模型，这是一个用于自回归语言模型的少样本评估框架。任务名称的格式为`Ceval-valid-{subject}`（如 `Ceval-valid-computer_network`）。例如，要评估托管在[HuggingFace Hub](https://huggingface.co/models)上的模型（如GPT-J-6B），可以使用以下命令：
+
+```bash
+python main.py --model hf-causal --model_args pretrained=EleutherAI/gpt-j-6B --tasks Ceval-valid-computer_network --device cuda:0
+```
+
+更多信息请参考 [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness]。
 
 
 

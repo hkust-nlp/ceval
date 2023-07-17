@@ -12,6 +12,10 @@ We hope C-Eval could help developers track the progress and analyze the importan
 
 <img src="resources/overview.png" style="zoom: 80%;" >
 
+## News
+
+* **[2023.07.17]** C-Eval now has been added into [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] ! Please refer to [Use Through Evaluation Harness](#use-through-evaluation-harness) for details.
+
 
 
 ## Table of Contents
@@ -197,6 +201,7 @@ D. {选项D}
 ```
 
 #### chain-of-thought prompt
+
 ```
 以下是中国关于{科目}考试的单项选择题，请选出其中的正确答案。
 
@@ -221,6 +226,16 @@ D. {选项D}
 答案：让我们一步一步思考，
 1. 
 ```
+
+#### Use Through Evaluation Harness
+
+Now, you can evaluate model on the validation set of C-Eval through [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] , which is a framework for few-shot evaluation of autoregressive language models.  The format of task name is `Ceval-valid-{subject}` ( e.g. `Ceval-valid-computer_network`). For example, to evaluate a model hosted on the [HuggingFace Hub](https://huggingface.co/models) (e.g. GPT-J-6B) ,you can use the following command:
+
+```bash
+python main.py --model hf-causal --model_args pretrained=EleutherAI/gpt-j-6B --tasks Ceval-valid-computer_network --device cuda:0
+```
+
+Please refer to [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] for more details.
 
 
 
