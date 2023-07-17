@@ -231,13 +231,13 @@ D. {选项D}
 
 #### 通过Evaluation Harness使用
 
-现在，你可以通过[lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] 在C-Eval的验证集上评估模型，这是一个用于自回归语言模型的少样本评估框架。任务名称的格式为`Ceval-valid-{subject}`（如 `Ceval-valid-computer_network`）。例如，要评估托管在[HuggingFace Hub](https://huggingface.co/models)上的模型（如GPT-J-6B），可以使用以下命令：
+现在，你可以通过[lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) 在C-Eval的验证集上评估模型，这是一个用于自回归语言模型的少样本评估框架。任务名称的格式为`Ceval-valid-{subject}`（如 `Ceval-valid-computer_network`）。例如，要评估托管在[HuggingFace Hub](https://huggingface.co/models)上的模型（如GPT-J-6B），可以使用以下命令：
 
 ```bash
 python main.py --model hf-causal --model_args pretrained=EleutherAI/gpt-j-6B --tasks Ceval-valid-computer_network --device cuda:0
 ```
 
-更多信息请参考 [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness]。
+更多信息请参考 [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)。
 
 
 

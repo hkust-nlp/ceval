@@ -229,13 +229,13 @@ D. {选项D}
 
 #### Use Through Evaluation Harness
 
-Now, you can evaluate model on the validation set of C-Eval through [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] , which is a framework for few-shot evaluation of autoregressive language models.  The format of task name is `Ceval-valid-{subject}` ( e.g. `Ceval-valid-computer_network`). For example, to evaluate a model hosted on the [HuggingFace Hub](https://huggingface.co/models) (e.g. GPT-J-6B) ,you can use the following command:
+Now, you can evaluate model on the validation set of C-Eval through [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), which is a framework for few-shot evaluation of autoregressive language models.  The format of task name is `Ceval-valid-{subject}` ( e.g. `Ceval-valid-computer_network`). For example, to evaluate a model hosted on the [HuggingFace Hub](https://huggingface.co/models) (e.g. GPT-J-6B) ,you can use the following command:
 
 ```bash
 python main.py --model hf-causal --model_args pretrained=EleutherAI/gpt-j-6B --tasks Ceval-valid-computer_network --device cuda:0
 ```
 
-Please refer to [lm-evaluation-harness][https://github.com/EleutherAI/lm-evaluation-harness] for more details.
+Please refer to [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) for more details.
 
 
 
