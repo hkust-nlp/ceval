@@ -16,7 +16,8 @@ C-Eval是全面的中文基础模型评估套件，涵盖了52个不同学科的
 
 ## 更新
 
-* **[2023.07.17]** C-Eval现在已经加入 [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) ! 更多信息请参考 [通过Evaluation Harness使用](#通过Evaluation-Harness使用) 。
+* **[2023.10.26]** 恭喜C-Eval论文被NeurIPS 2023接收 🎉🎉🎉
+* **[2023.07.17]** C-Eval现在已经加入 [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)🚀🚀🚀 更多信息请参考 [通过Evaluation Harness使用](#通过Evaluation-Harness使用) 。
 
 
 
@@ -292,10 +293,10 @@ C-Eval数据集遵循 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0
 如果您使用了我们的数据集，请引用我们的论文。
 
 ```
-@article{huang2023ceval,
+@inproceedings{huang2023ceval,
 title={C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models}, 
 author={Huang, Yuzhen and Bai, Yuzhuo and Zhu, Zhihao and Zhang, Junlei and Zhang, Jinghan and Su, Tangjun and Liu, Junteng and Lv, Chuancheng and Zhang, Yikai and Lei, Jiayi and Fu, Yao and Sun, Maosong and He, Junxian},
-journal={arXiv preprint arXiv:2305.08322},
+booktitle={Advances in Neural Information Processing Systems},
 year={2023}
 }
 ```

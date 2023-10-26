@@ -13,8 +13,8 @@ We hope C-Eval could help developers track the progress and analyze the importan
 <img src="resources/overview.png" style="zoom: 80%;" >
 
 ## News
-
-* **[2023.07.17]** C-Eval now has been added into [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) ! Please refer to [Use Through Evaluation Harness](#use-through-evaluation-harness) for details.
+* **[2023.10.26]** C-Eval has been accepted to NeurIPS 2023 🎉🎉🎉
+* **[2023.07.17]** C-Eval now has been added into [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) 🚀🚀🚀 Please refer to [Use Through Evaluation Harness](#use-through-evaluation-harness) for details.
 
 
 
@@ -289,10 +289,10 @@ The C-Eval dataset is licensed under a
 
 Please cite our paper if you use our dataset.
 ```
-@article{huang2023ceval,
+@inproceedings{huang2023ceval,
 title={C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models}, 
 author={Huang, Yuzhen and Bai, Yuzhuo and Zhu, Zhihao and Zhang, Junlei and Zhang, Jinghan and Su, Tangjun and Liu, Junteng and Lv, Chuancheng and Zhang, Yikai and Lei, Jiayi and Fu, Yao and Sun, Maosong and He, Junxian},
-journal={arXiv preprint arXiv:2305.08322},
+booktitle={Advances in Neural Information Processing Systems},
 year={2023}
 }
 ```
