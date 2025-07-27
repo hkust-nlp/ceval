@@ -13,7 +13,7 @@ We hope C-Eval could help developers track the progress and analyze the importan
 <img src="resources/overview.png" style="zoom: 80%;" >
 
 ## News
-* **[2025.7.27]** We have released the complete C-Eval test set to the community
+* **[2025.7.27]** **We have released the complete C-Eval test set to the community!**
 * **[2023.10.26]** C-Eval has been accepted to NeurIPS 2023 🎉🎉🎉
 * **[2023.07.17]** C-Eval now has been added into [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) 🚀🚀🚀 Please refer to [Use Through Evaluation Harness](#use-through-evaluation-harness) for details.
 
