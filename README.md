@@ -13,6 +13,7 @@ We hope C-Eval could help developers track the progress and analyze the importan
 <img src="resources/overview.png" style="zoom: 80%;" >
 
 ## News
+* **[2025.7.27]** We have released the complete C-Eval test set to the community
 * **[2023.10.26]** C-Eval has been accepted to NeurIPS 2023 🎉🎉🎉
 * **[2023.07.17]** C-Eval now has been added into [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) 🚀🚀🚀 Please refer to [Use Through Evaluation Harness](#use-through-evaluation-harness) for details.
 
@@ -25,8 +26,6 @@ We hope C-Eval could help developers track the progress and analyze the importan
 - [Results On Validation Split](#results-on-validation-split)
 - [Data](#data)
 - [How to Evaluate on C-Eval](#how-to-evaluate-on-c-eval)
-- [How to Submit](#how-to-submit)
-- [TODO](#todo)
 - [Licenses](#licenses)
 - [Citation](#citation)
 
@@ -236,40 +235,6 @@ python main.py --model hf-causal --model_args pretrained=EleutherAI/gpt-j-6B --t
 ```
 
 Please refer to [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) for more details.
-
-
-
-## How to Submit
-
-You need to first prepare a UTF-8 encoded JSON file with the following format, please refer to [submission_example.json](https://github.com/SJTU-LIT/ceval/blob/main/submission_example.json) for details.
-
-  ```
-  ## key within each subject is the "id" field from the dataset
-  {
-      "chinese_language_and_literature": {
-          "0": "A",
-          "1": "B",
-          "2": "B",
-          ...
-      },
-      
-      "subject_name":{
-      "0":"ans_1",
-      "1":"ans_2",
-      ...
-      }
-      ....
-  }
-  ```
-  Then you can submit the prepared json file [here](https://cevalbenchmark.com/static/user_interface.html), **note that you need to first log in to access the submission page**.
-
-
-
-## TODO
-
-- [x] add zero-shot results
-- [ ] incorporate into openai eval
-
 
 
 ## Licenses
